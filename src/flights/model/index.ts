@@ -1,16 +1,15 @@
 import { v4 as uuid } from 'uuid';
 import { AggregateRoot } from 'src/shared/core/aggregateRoot';
-import { DomainEvent } from 'src/shared/core/domainEvent';
 import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
+import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 
 export class Flight extends AggregateRoot<uuid> {
   id;
   destinyId: uuid;
   originId: uuid;
   flightNumber: FlightNumber; 
+  flightTime: FlightTime;
   crew; // should be a class
-  departTime: Date;
-  arrivalTime: Date;
 
   constructor(
     destinyId: uuid,
@@ -18,8 +17,7 @@ export class Flight extends AggregateRoot<uuid> {
     flightNumber: FlightNumber,
     crew,
     id,
-    departTime: Date,
-    arrivalTime: Date,
+    flightTime: FlightTime,
   ) {
     super();
     this.destinyId = destinyId;
@@ -27,10 +25,12 @@ export class Flight extends AggregateRoot<uuid> {
     this.flightNumber = flightNumber;
     this.crew = crew;
     this.id = id;
-    this.arrivalTime = arrivalTime;
-    this.departTime = departTime;
+    this.flightTime = flightTime; 
     this.id = uuid();
   }
+
+
+  public Add
 
   public beforeCreate() {
     // validate aircraft is free

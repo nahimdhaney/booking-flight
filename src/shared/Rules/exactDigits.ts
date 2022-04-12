@@ -11,7 +11,8 @@ export class ExactDigits implements BusinessRule {
     this.numberOfDigit = numberOfDigit;
     this.message = `Must contain ${numberOfDigit} digits`;
   }
-
+  
+  //if true, error
   validate(): boolean {
     return (this.data.length !== this.numberOfDigit)   
   }
