@@ -26,6 +26,7 @@ export class Booking extends AggregateRoot<uuid> {
     this.airPlane = airPlane;
     this.passanger = passanger; 
     this.reservationStatus= status;
+    this.completeBooking();
   }
 
  /**
