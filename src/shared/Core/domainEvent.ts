@@ -1,7 +1,17 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
+import { Datetype } from '../Rules/dateType';
 
 
-export interface DomainEvent {
+export abstract class DomainEvent {
+    id:uuid;
     name: string;
-    createdAt: Date;
+    createdAt: Datetype;
+    
+    /**
+     * DomainEvent
+     */
+    public DomainEvent(createdAt: Datetype) {
+    this.id=uuid();
+    this.createdAt= createdAt;
+    }
   }

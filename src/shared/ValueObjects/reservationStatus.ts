@@ -9,7 +9,6 @@ export class ReservationStatus extends ValueObject{
     private readonly data: string;
     constructor(data: string){
         super();
-        this.validate(new ExactDigits(data,2));
         this.validate(new OnlyValues(data,['open','waiting-for-payment','parcially-payed','completed','canceled']))
         this.data = data;
     }

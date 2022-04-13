@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { AggregateRoot } from 'src/shared/core/aggregateRoot';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
 import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { bookingCreated } from '../event/bookingCreated';
 
 export class Booking extends AggregateRoot<uuid> {
   id:uuid;
@@ -26,6 +27,14 @@ export class Booking extends AggregateRoot<uuid> {
     this.passanger = passanger; 
     this.reservationStatus= status;
   }
+
+ /**
+  * completeBooking
+  */
+ public completeBooking() {
+    let event = new bookingCreated(this.reservationNumber);
+    this.addDomainEvent(event)
+ }
 
 
 

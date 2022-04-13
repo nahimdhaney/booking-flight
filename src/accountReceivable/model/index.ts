@@ -6,16 +6,15 @@ import { Number } from 'src/shared/Rules/number';
 
 export class AccountReceivable extends Entity<uuid> {
   id;
-  amount: Number;
-  status: OnlyValues;
+  originalValue: Number;
+  currentValue: Number;
   constructor(
-    code: Seat,
-    price: Price
+    amount: Number,
   ) {
     super();
     this.id = uuid();
-    this.code = code;
-    this.price= price;
+    this.originalValue=amount;
+    this.currentValue=this.originalValue;
   }
 
 }
