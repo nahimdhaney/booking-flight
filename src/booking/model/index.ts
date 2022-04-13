@@ -1,0 +1,32 @@
+import { v4 as uuid } from 'uuid';
+import { AggregateRoot } from 'src/shared/core/aggregateRoot';
+import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
+import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+
+export class Booking extends AggregateRoot<uuid> {
+  id:uuid;
+  reservationNumber: ReservationNumber;
+  airPlaneTicket: uuid;
+  airPlane: uuid;
+  passanger: uuid;
+  reservationStatus: ReservationStatus; 
+
+  constructor(
+    reservationNumber: ReservationNumber,
+    airPlaneTicket: uuid,
+    airPlane: uuid,
+    passanger: uuid,  
+    status: ReservationStatus
+  ) {
+    super();
+    this.id = uuid();
+    this.reservationNumber = reservationNumber;
+    this.airPlaneTicket = airPlaneTicket;
+    this.airPlane = airPlane;
+    this.passanger = passanger; 
+    this.reservationStatus= status;
+  }
+
+
+
+}
