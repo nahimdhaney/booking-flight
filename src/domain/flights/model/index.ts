@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { AirPlaneTicket } from 'src/airplaneTicket/model';
+import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
 import { AggregateRoot } from 'src/shared/core/aggregateRoot';
 import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';

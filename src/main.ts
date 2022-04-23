@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import *  as moment from 'moment';
 import { AppModule } from './app.module';
-import { Booking } from './booking/model';
-import { Flight } from './flights/model';
-import { Passanger } from './passanger/model';
+import { Booking } from './domain/booking/model';
+import { Flight } from './domain/flights/model';
+import { Passanger } from './domain/passanger/model';
 import { FlightNumber } from './shared/ValueObjects/flightNumber';
 import { FlightTime } from './shared/ValueObjects/flightTime';
 import { ReservationNumber } from './shared/ValueObjects/reservationNumber';
