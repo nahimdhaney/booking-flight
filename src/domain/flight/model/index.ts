@@ -18,12 +18,12 @@ export class Flight extends AggregateRoot<uuid> {
   crew; // should be a class
 
   constructor(
-    destinyId: uuid,
-    originId: uuid,
-    flightNumber: FlightNumber,
-    crew,
-    id,
-    flightTime: FlightTime,
+    destinyId?: uuid,
+    originId?: uuid,
+    flightNumber?: FlightNumber,
+    crew?,
+    id?,
+    flightTime?: FlightTime,
   ) {
     super();
     this.destinyId = destinyId;

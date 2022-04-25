@@ -11,13 +11,12 @@ export class Booking extends AggregateRoot<uuid> {
   airPlane: uuid;
   passanger: uuid;
   reservationStatus: ReservationStatus; 
-
   constructor(
-    reservationNumber: ReservationNumber,
-    airPlaneTicket: uuid,
-    airPlane: uuid,
-    passanger: uuid,  
-    status: ReservationStatus
+    reservationNumber?: ReservationNumber,
+    airPlaneTicket?: uuid,
+    airPlane?: uuid,
+    passanger?: uuid,  
+    status?: ReservationStatus
   ) {
     super();
     this.id = uuid();
@@ -28,7 +27,8 @@ export class Booking extends AggregateRoot<uuid> {
     this.reservationStatus= status;
     this.completeBooking();
   }
-
+  
+  
  /**
   * completeBooking
   */
