@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
-import { Flight } from 'src/domain/flight/model';
+import { Flight } from 'src/domain/entities/flight.entity';
+// import { Flight } from 'src/domain/flight/model';
 
 
 @Injectable()

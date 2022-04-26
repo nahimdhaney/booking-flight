@@ -1,15 +1,9 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-// import { IDataServices } from '../../../core';
 import { MongoGenericRepository } from './mongo-generic-repository';
 import {
-  Author,
-  AuthorDocument,
-  Book,
-  BookDocument,
-  Genre,
-  GenreDocument,
+  Flight
 } from './model';
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 
@@ -17,25 +11,14 @@ import { IDataServices } from 'src/application/abstracts/data-services.abstract'
 export class MongoDataServices
   implements IDataServices, OnApplicationBootstrap
 {
-  authors: MongoGenericRepository<Author>;
-  books: MongoGenericRepository<Book>;
-  genres: MongoGenericRepository<Genre>;
+  flight: MongoGenericRepository<Flight>;
 
   constructor(
-    @InjectModel(Author.name)
-    private AuthorRepository: Model<AuthorDocument>,
-    @InjectModel(Book.name)
-    private BookRepository: Model<BookDocument>,
-    @InjectModel(Genre.name)
-    private GenreRepository: Model<GenreDocument>,
+    @InjectModel(Flight.name)
+    private FlightRepository: Model<Flight>,
   ) {}
 
   onApplicationBootstrap() {
-    this.authors = new MongoGenericRepository<Author>(this.AuthorRepository);
-    this.books = new MongoGenericRepository<Book>(this.BookRepository, [
-      'author',
-      'genre',
-    ]);
-    this.genres = new MongoGenericRepository<Genre>(this.GenreRepository);
+    this.flight = new MongoGenericRepository<Flight>(this.FlightRepository);
   }
 }

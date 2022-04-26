@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { CreateFlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
+import { Flight } from 'src/domain/entities/flight.entity';
 // import { IDataServices } from 'src/application/services/flight';
-import { Flight } from 'src/domain/flight/model';
-// import { Flight } from '../../../core/entities';
+// import { Flight } from 'src/domain/flight/model';
 // import { IDataServices } from '../../../core/abstracts';
 // import { CreateFlightDto, UpdateFlightDto } from '../../../core/dtos';
 import { FlightFactoryService } from './flight-factory.service';
@@ -24,15 +24,15 @@ export class FlightServices {
   }
 
   createFlight(createFlightDto: CreateFlightDto): Promise<Flight> {
-    const Flight = this.FlightFactoryService.createNewFlight(createFlightDto);
-    return this.dataServices.flight.create(Flight);
+    const flight = this.FlightFactoryService.createNewFlight(createFlightDto);
+    return this.dataServices.flight.create(flight);
   }
 
   updateFlight(
     FlightId: string,
     updateFlightDto: UpdateFlightDto,
   ): Promise<Flight> {
-    const Flight = this.FlightFactoryService.updateFlight(updateFlightDto);
-    return this.dataServices.flight.update(FlightId, Flight);
+    const flight = this.FlightFactoryService.updateFlight(updateFlightDto);
+    return this.dataServices.flight.update(FlightId, flight);
   }
 }
