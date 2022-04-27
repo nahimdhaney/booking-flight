@@ -1,23 +1,21 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
-export class CreateFlightDto {
+export class FlightDto {
 
-  @IsString()
-  @IsNotEmpty()
+  id: string;
+
   destinyId: string;
 
-  @IsString()
-  @IsNotEmpty()
   originId: string;
 
   flightNumber:string;
 
-  flightTime:string;
+  departureTime:Date;
   
-  // tickets:string;
+  arrivalTime:Date;
   
   
 }
 
-export class UpdateFlightDto extends PartialType(CreateFlightDto) {}
+export class UpdateFlightDto extends PartialType(FlightDto) {}

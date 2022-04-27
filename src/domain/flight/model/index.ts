@@ -37,6 +37,9 @@ export class Flight extends AggregateRoot<uuid> {
     this.generateAirplaneTickets("","");
   }
 
+  public toEntity(){
+    
+  }
 
   public generateAirplaneTickets(quant,price){
       this.tickets.push(new AirPlaneTicket(new Seat('2A'),new Price(20)));

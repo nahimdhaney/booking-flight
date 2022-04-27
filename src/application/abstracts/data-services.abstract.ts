@@ -4,11 +4,12 @@
 import { AccountReceivable } from "src/domain/accountReceivable/model";
 import { AirPlaneTicket } from "src/domain/airplaneTicket/model";
 import { Booking } from "src/domain/booking/model";
-import { Flight } from "src/domain/entities/flight.entity";
-// import { Flight } from "src/domain/flight/model";
+import { FlightEntity } from "src/domain/entities/flight.entity";
+import { Flight } from "src/domain/flight/model";
 import { Passanger } from "src/domain/passanger/model";
 import { Payment } from "src/domain/payment/model";
 import { IGenericRepository } from "src/shared/Core/iRepository";
+import { FlightDto } from "../dto/flight.dto";
 
 export abstract class IDataServices {
   // abstract bookings: IGenericRepository<Booking>;
@@ -17,7 +18,7 @@ export abstract class IDataServices {
 
   // abstract airPlaneTicket : IGenericRepository<AirPlaneTicket>;
 
-  abstract flight : IGenericRepository<Flight>;
+  abstract flight : IGenericRepository<FlightDto>;
     
   // abstract passanger : IGenericRepository<Passanger>;
 

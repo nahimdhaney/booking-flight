@@ -6,7 +6,6 @@ import { DATA_BASE_CONFIGURATION } from '../../../configuration';
 import { Flight, FlightSchema } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
-console.log("DATA_BASE_CONFIGURATION ",DATA_BASE_CONFIGURATION)
 @Module({
   imports: [
     MongooseModule.forFeature([

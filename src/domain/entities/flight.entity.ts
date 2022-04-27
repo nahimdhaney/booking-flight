@@ -1,14 +1,14 @@
 
-export class Flight {
-  id: string;
+export class FlightEntity {
 
+  id: string;
 
   destinyId: string;
 
   originId: string;
 
-  flightNumber:string;
+  flightNumber: string;
 
-  flightTime:string;
+  flightTime: string;
 
 }

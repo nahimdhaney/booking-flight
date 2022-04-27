@@ -1,33 +1,33 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
-import { CreateFlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
+import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
 import { FlightServices } from 'src/application/useCases/flight';
-// import { CreateFlightDto, UpdateFlightDto } from '../core/dtos';
-// import { FlightServices } from '../services/use-cases/author/author-services.service';
 
-@Controller('api/author')
+
+@Controller('api/flight')
 export class FlightController {
-  constructor(private authorServices: FlightServices) {}
+  constructor(private flightServices: FlightServices) {}
 
   @Get()
   async getAll() {
-    return this.authorServices.getAllFlights();
+    return this.flightServices.getAllFlights();
   }
 
   @Get(':id')
   async getById(@Param('id') id: any) {
-    return this.authorServices.getFlightById(id);
+    return this.flightServices.getFlightById(id);
   }
 
   @Post()
-  createFlight(@Body() authorDto: CreateFlightDto) {
-    return this.authorServices.createFlight(authorDto);
+  createFlight(@Body() flightDto: FlightDto) {
+    console.log(flightDto)
+    return this.flightServices.createFlight(flightDto);
   }
 
   @Put(':id')
   updateFlight(
-    @Param('id') authorId: string,
+    @Param('id') flightId: string,
     @Body() updateFlightDto: UpdateFlightDto,
   ) {
-    return this.authorServices.updateFlight(authorId, updateFlightDto);
+    return this.flightServices.updateFlight(flightId, updateFlightDto);
   }
 }

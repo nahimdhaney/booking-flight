@@ -1,23 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
-import { Flight } from 'src/domain/entities/flight.entity';
-// import { Flight } from 'src/domain/flight/model';
+import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
+// import { FlightEntity } from 'src/domain/entities/flight.entity';
+import { Flight } from 'src/domain/flight/model';
+import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
+import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 
 
 @Injectable()
 export class FlightFactoryService {
-  createNewFlight(createFlightDto: CreateFlightDto) {
-    const newFlight = new Flight();
-    // newFlight.firstName = createFlightDto.firstName;
-    // newFlight.lastName = createFlightDto.lastName;
+  createNewFlight(createFlightDto: FlightDto) {
 
-    return newFlight;
+    const number = new FlightNumber(createFlightDto.flightNumber);
+    const time = new FlightTime(createFlightDto.departureTime, createFlightDto.arrivalTime)
+
+    const flightToInsert = new Flight(
+      createFlightDto.originId, createFlightDto.destinyId, number, "crew", "", time);
+
+    return flightToInsert;
   }
 
   updateFlight(updateFlightDto: UpdateFlightDto) {
-    const newFlight = new Flight();
-    // newFlight.firstName = updateFlightDto.firstName;
-    // newFlight.lastName = updateFlightDto.lastName;
+    const newFlight = new FlightDto();
 
     return newFlight;
   }

@@ -19,8 +19,11 @@ export class Flight {
   flightNumber:string;
 
   @Prop()
-  flightTime:string;
+  departureTime:Date;
 
+  @Prop()
+  arrivalTime:Date;
+  
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);
