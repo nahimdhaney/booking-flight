@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 import { arrayMinSize } from 'class-validator';
+import { AirPlaneTicket } from 'src/application/dto/airPlaneTicket.dto';
 @Injectable()
 export class FlightServices {
   constructor(
@@ -28,12 +29,19 @@ export class FlightServices {
     return this.dataServices.flight.get(id);
   }
 
-  createFlight(createFlightDto: FlightDto): Promise<FlightDto> {
+  async createFlight(createFlightDto: FlightDto): Promise<FlightDto> {
 
-    const flight = this.FlightFactoryService.createNewFlight(createFlightDto);
-    const createdFLight = this.dataServices.flight.create(createFlightDto);
+    // const flight = this.FlightFactoryService.createNewFlight(createFlightDto);
 
-    return createdFLight;
+    const createdFlight = await this.dataServices.flight.create(createFlightDto);
+    const ticket = new AirPlaneTicket();
+    ticket.code ="12";
+    ticket.price = 100.42;
+    ticket.flight = createdFlight
+    
+    await this.dataServices.airPlaneTicket.create(ticket);
+
+    return createdFlight;
   }
 
   updateFlight(
