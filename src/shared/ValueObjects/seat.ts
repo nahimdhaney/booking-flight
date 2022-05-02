@@ -9,7 +9,7 @@ export class Seat extends ValueObject{
 
     constructor(data: string){
         super();
-        this.validate(new ExactDigits(data,2));
+        // this.validate(new ExactDigits(data,2));
         this.data = data;
     }
 

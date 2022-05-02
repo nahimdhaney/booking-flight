@@ -1,15 +1,15 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
+import { v4 as uuid } from 'uuid';
 
 export class AirPlaneTicket {
 
-
-  code: string;
+  id: uuid;
 
   price: number;
 
   flight:any;
-  
+
 }
 
 export class UpdateAirPlaneTicket extends PartialType(AirPlaneTicket) {}

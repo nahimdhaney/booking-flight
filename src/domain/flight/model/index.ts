@@ -19,14 +19,12 @@ export class Flight extends AggregateRoot<uuid> {
     destinyId?: uuid,
     originId?: uuid,
     flightNumber?: FlightNumber,
-    id?,
     flightTime?: FlightTime,
   ) {
     super();
     this.destinyId = destinyId;
     this.originId = originId;
     this.flightNumber = flightNumber;
-    this.id = id;
     this.flightTime = flightTime;
     this.id = uuid();
     // this.tickets = [];
