@@ -1,28 +1,29 @@
+import { v4 as uuid } from 'uuid';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
-// import { Author, Genre } from './';
-
-// export type BookDocument = Book & Document;
-
+import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
+import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 @Schema()
 export class Flight {
   @Prop({ required: true, unique: true })
-  id: string;
+  id: uuid;
 
   @Prop()
-  destinyId: string;
+  destinyId: uuid;
 
   @Prop()
-  originId: string;
+  originId: uuid;
 
   @Prop()
-  flightNumber:string;
+  flightNumber:FlightNumber;
+
+  // @Prop()
+  // departureTime:Date;
+
+  // @Prop()
+  // arrivalTime:Date;
 
   @Prop()
-  departureTime:Date;
-
-  @Prop()
-  arrivalTime:Date;
+  flightTime:FlightTime;
   
 }
 

@@ -13,42 +13,49 @@ import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 import { arrayMinSize } from 'class-validator';
 import { AirPlaneTicket } from 'src/application/dto/airPlaneTicket.dto';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 @Injectable()
 export class FlightServices {
   constructor(
     private dataServices: IDataServices,
     private FlightFactoryService: FlightFactoryService,
+    private eventEmitter: EventEmitter2,
   ) { }
 
-  getAllFlights(): Promise<FlightDto[]> {
+  getAllFlights(): Promise<Flight[]> {
     return this.dataServices.flight.getAll();
   }
 
-  getFlightById(id: any): Promise<FlightDto> {
+  getFlightById(id: any): Promise<Flight> {
 
     return this.dataServices.flight.get(id);
   }
 
-  async createFlight(createFlightDto: FlightDto): Promise<FlightDto> {
+  async createFlight(createFlightDto: FlightDto): Promise<Flight> {
 
-    // const flight = this.FlightFactoryService.createNewFlight(createFlightDto);
+    const flight = this.FlightFactoryService.createNewFlight(createFlightDto);
 
-    const createdFlight = await this.dataServices.flight.create(createFlightDto);
-    const ticket = new AirPlaneTicket();
-    ticket.code ="12";
-    ticket.price = 100.42;
-    ticket.flight = createdFlight
+    const createdFlight = await this.dataServices.flight.create(flight);
+    // const ticket = new AirPlaneTicket();
+    // ticket.code ="12";
+    // ticket.price = 100.42;
+    // ticket.flight = createdFlight
     
-    await this.dataServices.airPlaneTicket.create(ticket);
+    this.eventEmitter.emit(
+      'flight.created',
+      createdFlight
+    );    
+
+    // await this.dataServices.airPlaneTicket.create(ticket);
 
     return createdFlight;
   }
 
   updateFlight(
-    FlightId: string,
+    flightId: string,
     updateFlightDto: UpdateFlightDto,
-  ): Promise<FlightDto> {
+  ): Promise<Flight> {
     const flight = this.FlightFactoryService.updateFlight(updateFlightDto);
-    return this.dataServices.flight.update(FlightId, flight);
+    return this.dataServices.flight.update(flightId,flight);
   }
 }

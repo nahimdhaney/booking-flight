@@ -34,7 +34,7 @@ export class Booking extends AggregateRoot<uuid> {
   */
  public completeBooking() {
     let event = new bookingCreated(this.reservationNumber);
-    this.addDomainEvent(event)
+    // this.addDomainEvent(event)
  }
 
 

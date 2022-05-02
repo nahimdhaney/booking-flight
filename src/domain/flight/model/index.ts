@@ -10,18 +10,15 @@ export class Flight extends AggregateRoot<uuid> {
   id;
   destinyId: uuid;
   originId: uuid;
-  flightNumber: FlightNumber; 
+  flightNumber: FlightNumber;
   flightTime: FlightTime;
-  tickets: Array<AirPlaneTicket>;
-  AirPlaneTicket
-  
-  crew; // should be a class
+  // tickets: Array<AirPlaneTicket>;
+
 
   constructor(
     destinyId?: uuid,
     originId?: uuid,
     flightNumber?: FlightNumber,
-    crew?,
     id?,
     flightTime?: FlightTime,
   ) {
@@ -29,34 +26,33 @@ export class Flight extends AggregateRoot<uuid> {
     this.destinyId = destinyId;
     this.originId = originId;
     this.flightNumber = flightNumber;
-    this.crew = crew;
     this.id = id;
-    this.flightTime = flightTime; 
+    this.flightTime = flightTime;
     this.id = uuid();
-    this.tickets = [];
-    this.generateAirplaneTickets("","");
+    // this.tickets = [];
+    // this.generateAirplaneTickets("", "");
   }
 
-  public toEntity(){
-    
-  }
+  // public toEntity() {
 
-  public generateAirplaneTickets(quant,price){
-      this.tickets.push(new AirPlaneTicket(new Seat('2A'),new Price(20)));
-  }
+  // }
 
-  public beforeCreate() {
-    // validate aircraft is free
-    // validate origin and destiny
-    // create lista (report)
-  }
+  // public generateAirplaneTickets(quant, price) {
+  //   // this.tickets.push(new AirPlaneTicket(new Seat('2A'), new Price(20)));
+  // }
 
-  public afterCreate() {
-    // const event: DomainEvent = {
-    //   name: 'after_create_flight',
-    //   createdAt: new Date(),
-    //   id: uuid.create(),
-    // };
-    // this.addDomainEvent(event);
-  }
+  // public beforeCreate() {
+  //   // validate aircraft is free
+  //   // validate origin and destiny
+  //   // create lista (report)
+  // }
+
+  // public afterCreate() {
+  //   // const event: DomainEvent = {
+  //   //   name: 'after_create_flight',
+  //   //   createdAt: new Date(),
+  //   //   id: uuid.create(),
+  //   // };
+  //   // this.addDomainEvent(event);
+  // }
 }

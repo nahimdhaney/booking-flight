@@ -1,20 +1,25 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
+import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
+import { FlightTime } from 'src/shared/ValueObjects/flightTime';
+import { v4 as uuid } from 'uuid';
 
 export class FlightDto {
 
-  id: string;
+  id: uuid;
 
-  destinyId: string;
+  destinyId: uuid;
 
-  originId: string;
+  originId: uuid;
 
-  flightNumber:string;
+  flightNumber:FlightNumber;
 
   departureTime:Date;
   
   arrivalTime:Date;
   
+  flightTime:FlightTime;
+  // airPlaneTickets:any;
   
 }
 

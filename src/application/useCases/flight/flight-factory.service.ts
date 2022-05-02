@@ -10,17 +10,20 @@ import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 export class FlightFactoryService {
   createNewFlight(createFlightDto: FlightDto) {
 
-    const number = new FlightNumber(createFlightDto.flightNumber);
-    const time = new FlightTime(createFlightDto.departureTime, createFlightDto.arrivalTime)
+    const number = createFlightDto.flightNumber;
+    console.log(typeof createFlightDto.departureTime,createFlightDto.arrivalTime);
+    const time = new FlightTime(new Date(createFlightDto.departureTime),new Date(createFlightDto.arrivalTime))
 
     const flightToInsert = new Flight(
-      createFlightDto.originId, createFlightDto.destinyId, number, "crew", "", time);
+      createFlightDto.originId, 
+      createFlightDto.destinyId, 
+      number, "crew",time);
 
     return flightToInsert;
   }
 
   updateFlight(updateFlightDto: UpdateFlightDto) {
-    const newFlight = new FlightDto();
+    const newFlight = new Flight();
 
     return newFlight;
   }

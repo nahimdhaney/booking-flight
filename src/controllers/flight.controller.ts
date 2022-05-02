@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
 import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
 import { FlightServices } from 'src/application/useCases/flight';
+import { Flight } from 'src/domain/flight/model';
 
 
 @Controller('api/flight')
@@ -19,7 +20,7 @@ export class FlightController {
 
   @Post()
   createFlight(@Body() flightDto: FlightDto) {
-    console.log(flightDto)
+    // console.log(flightDto)
     return this.flightServices.createFlight(flightDto);
   }
 

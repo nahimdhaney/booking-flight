@@ -7,9 +7,10 @@
 // import { Flight } from "src/domain/flight/model";
 // import { Passanger } from "src/domain/passanger/model";
 // import { Payment } from "src/domain/payment/model";
+import { Flight } from "src/domain/flight/model";
 import { IGenericRepository } from "src/shared/Core/iRepository";
 import { AirPlaneTicket } from "../dto/airPlaneTicket.dto";
-import { FlightDto } from "../dto/flight.dto";
+// import { FlightDto } from "../dto/flight.dto";
 
 export abstract class IDataServices {
   // abstract bookings: IGenericRepository<Booking>;
@@ -18,7 +19,7 @@ export abstract class IDataServices {
 
   abstract airPlaneTicket : IGenericRepository<AirPlaneTicket>;
 
-  abstract flight : IGenericRepository<FlightDto>;
+  abstract flight : IGenericRepository<Flight>;
     
   // abstract passanger : IGenericRepository<Passanger>;
 
