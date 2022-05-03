@@ -1,17 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBookingDto, UpdateBookingDto } from 'src/application/dto/booking.dto';
-// import { Booking } from 'src/domain/booking/model';
+import { v4 as uuid } from 'uuid';
 import { Booking } from 'src/domain/booking/model';
+import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
+import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
 @Injectable()
 export class BookingFactoryService {
-  createNewBooking(createBookingDto: CreateBookingDto) {
-    const newBooking = new Booking(); 
-    return newBooking;
-  }
+    createNewBooking(createBookingDto: CreateBookingDto) {
+        const number = createBookingDto.reservationNumber;
+        const reservationNumber = new ReservationNumber(number);
 
-  updateBooking(updateBookingDto: UpdateBookingDto) {
-    const newBooking = new Booking();
+        // obtain some uuid
+        // TODO  
 
-    return newBooking;
-  }
+        const booking = new Booking(
+            reservationNumber,
+            new uuid(),
+            new uuid(),
+            new uuid(),
+            new ReservationStatus(createBookingDto.reservationStatus),
+            new Date(),
+        );
+
+        return booking;
+    }
+
+    updateBooking(updateBookingDto: UpdateBookingDto) {
+        const newBooking = new Booking();
+
+        return newBooking;
+    }
 }
