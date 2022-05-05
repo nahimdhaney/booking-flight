@@ -11,7 +11,9 @@ import {
   Flight,
   FlightSchema,
   Passanger,
-  PassangerSchema
+  PassangerSchema,
+  Payment,
+  PaymentSchema,
 } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
@@ -33,6 +35,10 @@ import { MongoDataServices } from './mongo-data-services.service';
       {
         name: Passanger.name,
         schema: PassangerSchema
+      },
+      {
+        name: Payment.name,
+        schema: PaymentSchema
       },
     ]),
     MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),

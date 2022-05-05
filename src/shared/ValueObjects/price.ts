@@ -12,5 +12,12 @@ export class Price extends ValueObject{
         this.validate(new Number(data));
         this.data = data;
     }
+    
+    /**
+     * name
+     */
+    public getData() {
+        return this.data;
+    }
 
 }

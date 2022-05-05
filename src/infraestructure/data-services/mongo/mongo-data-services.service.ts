@@ -9,9 +9,12 @@ import {
   Booking,
   BookingDocument,
   Passanger,
-  PassangerDocument
+  PassangerDocument,
+  Payment,
+  PaymentDocument,
 } from './model';
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
+import mongoose from 'mongoose';
 
 @Injectable()
 export class MongoDataServices
@@ -22,6 +25,7 @@ export class MongoDataServices
   airPlaneTicket: MongoGenericRepository<AirPlaneTicket>;
   booking: MongoGenericRepository<Booking>;
   passanger: MongoGenericRepository<Passanger>;
+  payment: MongoGenericRepository<Payment>;
   
   constructor(
     @InjectModel(Flight.name)
@@ -36,6 +40,9 @@ export class MongoDataServices
     @InjectModel(Passanger.name)
     private PassangerRepository: Model<PassangerDocument>,
 
+    @InjectModel(Payment.name)
+    private PaymentRepository: Model<PaymentDocument>,
+
   ) {}
 
 
@@ -46,6 +53,6 @@ export class MongoDataServices
     ]);
     this.booking = new MongoGenericRepository<Booking>(this.BookingRepository);
     this.passanger = new MongoGenericRepository<Passanger>(this.PassangerRepository);
-    
-  }
+    this.payment = new MongoGenericRepository<Payment>(this.PaymentRepository);
+    mongoose.set('debug', true);  }
 }

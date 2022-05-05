@@ -10,7 +10,7 @@ import { BookingFactoryService } from './booking-factory.service';
 export class BookingServices {
   constructor(
     private dataServices: IDataServices,
-    private BookingFactoryService: BookingFactoryService,
+    private bookingFactoryService: BookingFactoryService,
     private eventEmitter: EventEmitter2,
   ) {}
 
@@ -24,8 +24,8 @@ export class BookingServices {
 
   async createBooking(createBookingDto: CreateBookingDto): Promise<Booking> {
     
-    const booking = this.BookingFactoryService.createNewBooking(createBookingDto);
-    // const accountReceivable = th
+    const booking = this.bookingFactoryService.createNewBooking(createBookingDto);
+
     const createdBooking = this.dataServices.booking.create(booking);
 
     
@@ -41,7 +41,7 @@ export class BookingServices {
     BookingId: string,
     updateBookingDto: UpdateBookingDto,
   ): Promise<Booking> {
-    const booking = this.BookingFactoryService.updateBooking(updateBookingDto);
+    const booking = this.bookingFactoryService.updateBooking(updateBookingDto);
     return this.dataServices.booking.update(BookingId, booking);
   }
 }

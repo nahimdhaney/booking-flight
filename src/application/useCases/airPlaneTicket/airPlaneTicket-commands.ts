@@ -1,8 +1,7 @@
 
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
+import { FlightDto } from 'src/application/dto/flight.dto';
 
-import { AirPlaneTicket } from 'src/application/dto/airPlaneTicket.dto';
 import { OnEvent } from '@nestjs/event-emitter';
 
 

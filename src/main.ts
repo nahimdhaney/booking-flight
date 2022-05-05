@@ -1,19 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 require('dotenv').config({path:'.env'});
-import *  as moment from 'moment';
 import { AppModule } from './app.module';
-import { Booking } from './domain/booking/model';
-import { Flight } from './domain/flight/model';
-import { Passanger } from './domain/passanger/model';
-import { FlightNumber } from './shared/ValueObjects/flightNumber';
-import { FlightTime } from './shared/ValueObjects/flightTime';
-import { ReservationNumber } from './shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from './shared/ValueObjects/ReservationStatus';
 
 
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule,{
+    logger: ['error', 'warn'],
+  });
+  
   await app.listen(3000);
 }
 

@@ -4,10 +4,12 @@ import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
 import { Amount } from 'src/shared/ValueObjects/amount';
 
 export class Payment extends AggregateRoot<uuid> {
+  
   id:uuid;
   transactionNumber: TransactionNumber;
   amount: Amount;
   booking: uuid;
+
   constructor(
     transactionNumber?: TransactionNumber,
     booking?: uuid,

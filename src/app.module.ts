@@ -6,18 +6,20 @@ import { FlightServicesModule } from './application/useCases/flight';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AirPlaneTicketServicesModule } from './application/useCases/airPlaneTicket';
 import { BookingServicesModule } from './application/useCases/booking';
-import { BookingController, FlightController, PassangerController } from './controllers';
+import { BookingController, FlightController, PassangerController, PaymentController } from './controllers';
 import { PassangerServicesModule } from './application/useCases/passanger';
+import { PaymentServicesModule } from './application/useCases/payment';
 
 @Module({
   imports: [EventEmitterModule.forRoot(),
     DataServicesModule, FlightServicesModule,
     AirPlaneTicketServicesModule, BookingServicesModule,
-    PassangerServicesModule],
+    PassangerServicesModule,PaymentServicesModule],
   controllers: [AppController,
     FlightController,
     BookingController,
-    PassangerController
+    PassangerController,
+    PaymentController
   ],
   providers: [AppService],
 })
