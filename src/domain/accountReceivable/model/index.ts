@@ -1,15 +1,13 @@
 import { v4 as uuid } from 'uuid';
-import { Seat } from 'src/shared/ValueObjects/seat';
-import { Price } from 'src/shared/ValueObjects/price';
 import { Entity } from 'src/shared/core/entity';
-import { Number } from 'src/shared/Rules/number';
+import { Amount } from 'src/shared/ValueObjects/amount';
 
 export class AccountReceivable extends Entity<uuid> {
   id;
-  originalValue: Number;
-  currentValue: Number;
+  originalValue: Amount;
+  currentValue: Amount;
   constructor(
-    amount: Number,
+    amount: Amount,
   ) {
     super();
     this.id = uuid();

@@ -3,21 +3,21 @@ import { v4 as uuid } from 'uuid';
 import { Price } from 'src/shared/ValueObjects/price';
 import { Seat } from 'src/shared/ValueObjects/seat';
 
-export type AirPlaneTicketDocument = AirPlaneTicket & Document;
+export type PassangerDocument = Passanger & Document;
 
 @Schema()
-export class AirPlaneTicket {
+export class Passanger {
   @Prop({ required: true })
   id: uuid;
 
   @Prop()
-  code: Seat;
+  name: string;
 
   @Prop()
-  price: Price;
+  lastName: string;
 
   @Prop()
-  flight: uuid;
+  passport: string;
 }
 
-export const AirPlaneTicketSchema = SchemaFactory.createForClass(AirPlaneTicket);
+export const PassangerSchema = SchemaFactory.createForClass(Passanger);

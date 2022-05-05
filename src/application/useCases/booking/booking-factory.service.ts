@@ -4,6 +4,8 @@ import { v4 as uuid } from 'uuid';
 import { Booking } from 'src/domain/booking/model';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
 import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { Amount } from 'src/shared/ValueObjects/amount';
+import { AccountReceivable } from 'src/domain/accountReceivable/model';
 @Injectable()
 export class BookingFactoryService {
     createNewBooking(createBookingDto: CreateBookingDto) {
@@ -12,17 +14,18 @@ export class BookingFactoryService {
 
         // obtain some uuid
         // TODO  
+        
+        let account = new AccountReceivable(new Amount(createBookingDto.value));
 
-        const booking = new Booking(
+        return new Booking(
             reservationNumber,
             new uuid(),
             new uuid(),
-            new uuid(),
+            createBookingDto.passanger,
             new ReservationStatus(createBookingDto.reservationStatus),
             new Date(),
+            account
         );
-
-        return booking;
     }
 
     updateBooking(updateBookingDto: UpdateBookingDto) {

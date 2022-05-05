@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import * as mongoose from 'mongoose';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
 import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { AccountReceivable } from 'src/domain/accountReceivable/model';
 // import { Author, Genre } from './';
 
 export type BookingDocument = Booking & Document;
@@ -29,6 +30,9 @@ export class Booking {
 
   @Prop()
   date: Date;
+
+  @Prop()
+  accountReceivable : AccountReceivable;
   
 }
 

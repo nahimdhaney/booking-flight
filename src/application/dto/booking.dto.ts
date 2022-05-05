@@ -12,15 +12,17 @@ export class CreateBookingDto {
 
   @IsString()
   @IsNotEmpty()
-  airPlaneTicket: uuid
+  airPlaneTicket: uuid;
   
-  airPlane: uuid
+  airPlane: uuid;
 
   passanger: uuid;
 
-  reservationStatus: string
+  reservationStatus: string;
 
-  date: Date
+  date: Date;
+
+  value: number;
 
 }
 

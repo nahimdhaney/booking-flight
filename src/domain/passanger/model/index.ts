@@ -8,9 +8,9 @@ export class Passanger extends AggregateRoot<uuid> {
   passport : string;
 
   constructor(
-    name: string,
-    lastName: string,
-    passport : string,
+    name?: string,
+    lastName?: string,
+    passport? : string,
     ) {
     super();
     this.id = uuid();

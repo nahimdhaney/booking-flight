@@ -2,43 +2,46 @@ import { v4 as uuid } from 'uuid';
 import { AggregateRoot } from 'src/shared/core/aggregateRoot';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
 import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
-import { bookingCreated } from '../event/bookingCreated';
+import { AccountReceivable } from 'src/domain/accountReceivable/model';
 
 export class Booking extends AggregateRoot<uuid> {
-  id:uuid;
+
+  id: uuid;
   reservationNumber: ReservationNumber;
   airPlaneTicket: uuid;
   airPlane: uuid;
   passanger: uuid;
   reservationStatus: ReservationStatus;
-  date: Date 
+  date: Date;
+  accountReceivable: AccountReceivable;
   constructor(
     reservationNumber?: ReservationNumber,
     airPlaneTicket?: uuid,
     airPlane?: uuid,
-    passanger?: uuid,  
+    passanger?: uuid,
     status?: ReservationStatus,
-    date?: Date
+    date?: Date,
+    accountReceivable?: AccountReceivable
   ) {
     super();
     this.id = uuid();
     this.reservationNumber = reservationNumber;
     this.airPlaneTicket = airPlaneTicket;
     this.airPlane = airPlane;
-    this.passanger = passanger; 
-    this.reservationStatus= status;
+    this.passanger = passanger;
+    this.reservationStatus = status;
     this.date = date;
-    // this.completeBooking();
+    this.accountReceivable = accountReceivable;
   }
-  
-  
- /**
-  * completeBooking
-  */
-//  public completeBooking() {
-//     let event = new bookingCreated(this.reservationNumber);
-//     // this.addDomainEvent(event)
-//  }
+
+
+  /**
+   * completeBooking
+   */
+  //  public completeBooking() {
+  //     let event = new bookingCreated(this.reservationNumber);
+  //     // this.addDomainEvent(event)
+  //  }
 
 
 

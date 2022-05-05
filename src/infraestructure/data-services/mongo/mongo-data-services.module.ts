@@ -3,7 +3,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 // import { IDataServices } from '../../../core';
 import { DATA_BASE_CONFIGURATION } from '../../../configuration';
-import { AirPlaneTicket, AirPlaneTicketSchema, Booking, BookingSchema, Flight, FlightSchema } from './model';
+import {
+  AirPlaneTicket,
+  AirPlaneTicketSchema,
+  Booking,
+  BookingSchema,
+  Flight,
+  FlightSchema,
+  Passanger,
+  PassangerSchema
+} from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
 @Module({
@@ -18,10 +27,13 @@ import { MongoDataServices } from './mongo-data-services.service';
         schema: AirPlaneTicketSchema
       },
       {
-        name:  Booking.name,
+        name: Booking.name,
         schema: BookingSchema
       },
-
+      {
+        name: Passanger.name,
+        schema: PassangerSchema
+      },
     ]),
     MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),
   ],

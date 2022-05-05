@@ -9,9 +9,9 @@ export class Payment extends AggregateRoot<uuid> {
   amount: Amount;
   booking: uuid;
   constructor(
-    transactionNumber: TransactionNumber,
-    booking: uuid,
-    amount: Amount,
+    transactionNumber?: TransactionNumber,
+    booking?: uuid,
+    amount?: Amount,
     ) {
     super();
     this.id = uuid();
