@@ -30,14 +30,15 @@ export class FlightServices {
     const createdFlight = await this.dataServices.flight.create(flight);
 
     for (let index = 0; index < createFlightDto.tickets.length; index++) {
+
       const ticketsToCreate = createFlightDto.tickets[index];
-      // console.log(ticketsToCreate)
       const tickets = this.flightFactoryService.generateTicketFlight(ticketsToCreate, createdFlight.id);
-      // persist
+      
       for (let y = 0; y < tickets.length; y++) {
         const element = tickets[y];
         await this.dataServices.airPlaneTicket.create(element)
       }
+      
     }
 
     this.eventEmitter.emit(

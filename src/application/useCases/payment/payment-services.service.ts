@@ -30,18 +30,17 @@ export class PaymentServices {
   async createPayment(createPaymentDto: PaymentDto): Promise<Payment> {
 
     // TODO verify saldo
-    const booking = await this.dataServices.booking.get('da97882b-bc34-4066-a714-22a08fa4ab83');
+    const booking = await this.dataServices.booking.get(createPaymentDto.booking);
 
+    if (!booking){
+      throw new Error("Not booking found");
+    }
     const currentValue = booking.accountReceivable.currentValue || undefined;
     
     const paymentvalue = new Amount(createPaymentDto.amount)
 
-    console.log(
-      this.dataServices
-      )
-
     if (currentValue < paymentvalue ){
-        console.log("NO PUEDE SER MENOR AL MONTO ACTUAL DE LA CUENTA POR COBRAR")
+      throw new Error("Payment is higher than account");
     }
 
     const payment = this.paymentFactoryService.createNewPayment(createPaymentDto);

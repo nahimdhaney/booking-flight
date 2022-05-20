@@ -8,9 +8,10 @@ export class Number implements BusinessRule {
 
   constructor(data: number) {
     this.data = data;
+    this.message = "should be a number"
   }
   
   validate(): boolean {
-    return isNaN(this.data)
+    return !(typeof this.data == 'number')
   }
 }

@@ -4,10 +4,12 @@ import { Price } from 'src/shared/ValueObjects/price';
 import { Entity } from 'src/shared/core/entity';
 
 export class AirPlaneTicket extends Entity<uuid> {
+  
   id;
   code: Seat ;
   price: Price;
   flight: uuid;
+
   constructor(
     code: Seat,
     price: Price,
