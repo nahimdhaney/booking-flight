@@ -21,7 +21,9 @@ export class AirPlaneTicket {
 
   @Prop()
   clase:string;
-
+  
+  @Prop()
+  status: string;
 }
 
 export const AirPlaneTicketSchema = SchemaFactory.createForClass(AirPlaneTicket);

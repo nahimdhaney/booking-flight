@@ -6,21 +6,25 @@ import { Flight } from 'src/domain/flight/model';
 
 @Controller('api/flight')
 export class FlightController {
-  constructor(private flightServices: FlightServices) {}
+  constructor(private flightServices: FlightServices) { }
 
   @Get()
   async getAll() {
     return this.flightServices.getAllFlights();
   }
 
-  @Get('/ticket')
-  async getTicketId(@Query('flight') flight,@Query('clase') clase) {
-    
-    let ticket = await this.flightServices.getTicketByFlightIdAndType(flight,clase);
-    console.log(ticket)
+  @Get('/openTicket')
+  async getTicketByFlightIdAndType(@Query('flight') flight, @Query('clase') clase, @Query('status') status) {
+    let ticket = await this.flightServices.getTicketByFlightIdAndType(flight, clase, status);
     return ticket
   }
-  
+
+  @Get('/ticket')
+  async getTicketId(@Query('id') id) {
+    let ticket = await this.flightServices.getTicketById(id);
+    return ticket;
+  }
+
   @Get(':id')
   async getById(@Param('id') id: any) {
     return this.flightServices.getFlightById(id);

@@ -39,7 +39,7 @@ export class FlightFactoryService {
     for (let index = 0; index < rowTicket.quant; index++) {
       let seat = new Seat(rowTicket.clase + "-" + alphabet[letter] + code);
       let price = new Price(rowTicket.price);
-      let ticket = new AirPlaneTicket(seat, price,flight,rowTicket.clase);
+      let ticket = new AirPlaneTicket(seat, price,flight,rowTicket.clase,'open');
       if (index % 9 == 0) {
         letter++;
         code = 1;

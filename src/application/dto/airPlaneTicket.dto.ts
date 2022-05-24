@@ -8,6 +8,8 @@ export class AirPlaneTicket {
 
   price: number;
 
+  status: string;
+
   flight:any;
 
 }

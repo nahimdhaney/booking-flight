@@ -21,12 +21,11 @@ export class AirPlaneTicketCommands {
     if (!ticket) {
       throw new Error("unable to get the ticket")
     } else {
-      ticket.code
+      // checking status
+      ticket.status = 'booked'
     }
 
     await this.dataServices.airPlaneTicket.update(payload.airPlaneTicket, ticket)
-
-    console.log("finalizing booking.created")
 
   }
 

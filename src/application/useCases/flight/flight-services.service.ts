@@ -24,10 +24,14 @@ export class FlightServices {
     return this.dataServices.flight.get(id);
   }
 
+  getTicketById(id: any): Promise<AirPlaneTicket> {
 
-  async getTicketByFlightIdAndType(flight_id: string,clase:string): Promise<AirPlaneTicket> {
+    return this.dataServices.airPlaneTicket.get(id);
+  }
 
-    const airplaneticket = await this.dataServices.airPlaneTicket.query({flight:flight_id,clase:clase});
+  async getTicketByFlightIdAndType(flight_id: string,clase:string,status:string): Promise<AirPlaneTicket> {
+
+    const airplaneticket = await this.dataServices.airPlaneTicket.query({flight:flight_id,clase:clase,status:status});
     console.log(airplaneticket);
     return airplaneticket[0];
 
