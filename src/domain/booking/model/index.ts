@@ -9,7 +9,7 @@ export class Booking extends AggregateRoot<uuid> {
   id: uuid;
   reservationNumber: ReservationNumber;
   airPlaneTicket: uuid;
-  airPlane: uuid;
+  flight: uuid;
   passanger: uuid;
   reservationStatus: ReservationStatus;
   date: Date;
@@ -17,7 +17,7 @@ export class Booking extends AggregateRoot<uuid> {
   constructor(
     reservationNumber?: ReservationNumber,
     airPlaneTicket?: uuid,
-    airPlane?: uuid,
+    flight?: uuid,
     passanger?: uuid,
     status?: ReservationStatus,
     date?: Date,
@@ -27,7 +27,7 @@ export class Booking extends AggregateRoot<uuid> {
     this.id = uuid();
     this.reservationNumber = reservationNumber;
     this.airPlaneTicket = airPlaneTicket;
-    this.airPlane = airPlane;
+    this.flight = flight;
     this.passanger = passanger;
     this.reservationStatus = status;
     this.date = date;

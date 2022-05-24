@@ -3,6 +3,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
+import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
 import { Flight } from 'src/domain/flight/model';
 import { FlightFactoryService } from './flight-factory.service';
 
@@ -21,6 +22,15 @@ export class FlightServices {
   getFlightById(id: any): Promise<Flight> {
 
     return this.dataServices.flight.get(id);
+  }
+
+
+  async getTicketByFlightIdAndType(flight_id: string,clase:string): Promise<AirPlaneTicket> {
+
+    const airplaneticket = await this.dataServices.airPlaneTicket.query({flight:flight_id,clase:clase});
+    console.log(airplaneticket);
+    return airplaneticket[0];
+
   }
 
   async createFlight(createFlightDto: FlightDto): Promise<Flight> {

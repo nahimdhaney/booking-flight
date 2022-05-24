@@ -39,14 +39,13 @@ export class FlightFactoryService {
     for (let index = 0; index < rowTicket.quant; index++) {
       let seat = new Seat(rowTicket.clase + "-" + alphabet[letter] + code);
       let price = new Price(rowTicket.price);
-      let ticket = new AirPlaneTicket(seat, price,flight);
+      let ticket = new AirPlaneTicket(seat, price,flight,rowTicket.clase);
       if (index % 9 == 0) {
         letter++;
         code = 1;
       } else {
         code++;
       }
-      console.log(code);
       tickets.push(ticket)
     }
     console.log(tickets);

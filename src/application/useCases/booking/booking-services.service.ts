@@ -24,9 +24,9 @@ export class BookingServices {
 
   async createBooking(createBookingDto: CreateBookingDto): Promise<Booking> {
     
-    const booking = this.bookingFactoryService.createNewBooking(createBookingDto);
+    const booking = await this.bookingFactoryService.createNewBooking(createBookingDto);
 
-    const createdBooking = this.dataServices.booking.create(booking);
+    const createdBooking =await this.dataServices.booking.create(booking);
 
     
     this.eventEmitter.emit(

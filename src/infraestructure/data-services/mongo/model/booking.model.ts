@@ -19,7 +19,7 @@ export class Booking {
   airPlaneTicket: uuid;
 
   @Prop()
-  airPlane: uuid;
+  flight: uuid;
 
   @Prop()
   passanger: uuid;

@@ -9,16 +9,19 @@ export class AirPlaneTicket extends Entity<uuid> {
   code: Seat ;
   price: Price;
   flight: uuid;
+  clase:string;
 
   constructor(
     code: Seat,
     price: Price,
-    flight: uuid
+    flight: uuid,
+    clase: string,
   ) {
     super();
     this.id = uuid();
     this.code = code;
     this.price= price;
     this.flight = flight;
+    this.clase = clase
   }
 }

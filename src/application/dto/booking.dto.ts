@@ -14,7 +14,7 @@ export class CreateBookingDto {
   @IsNotEmpty()
   airPlaneTicket: uuid;
   
-  airPlane: uuid;
+  flight: uuid;
 
   passanger: uuid;
 

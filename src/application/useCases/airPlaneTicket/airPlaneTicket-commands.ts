@@ -2,13 +2,15 @@
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { FlightDto } from 'src/application/dto/flight.dto';
 
-import { OnEvent } from '@nestjs/event-emitter';
+import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { Booking } from 'src/domain/booking/model';
+import { Injectable } from '@nestjs/common';
 
-
+@Injectable()
 export class AirPlaneTicketCommands {
   constructor(
     private dataServices: IDataServices,
+    private eventEmitter: EventEmitter2,
   ) { }
 
   @OnEvent('booking.created')

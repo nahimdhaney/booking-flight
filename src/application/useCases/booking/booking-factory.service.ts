@@ -19,7 +19,7 @@ export class BookingFactoryService {
 
         return new Booking(
             reservationNumber,
-            new uuid(),
+            createBookingDto.airPlaneTicket,
             new uuid(),
             createBookingDto.passanger,
             new ReservationStatus(createBookingDto.reservationStatus),

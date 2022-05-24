@@ -18,6 +18,10 @@ export class AirPlaneTicket {
 
   @Prop()
   flight: uuid;
+
+  @Prop()
+  clase:string;
+
 }
 
 export const AirPlaneTicketSchema = SchemaFactory.createForClass(AirPlaneTicket);
