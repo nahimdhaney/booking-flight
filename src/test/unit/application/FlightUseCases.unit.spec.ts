@@ -6,6 +6,8 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Flight } from 'src/domain/flight/model';
 import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
+import { FlightDto } from 'src/application/dto/flight.dto';
+import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
 
 describe('FlightsUseCases Test', () => {
   let dataServices: IDataServices;
@@ -23,23 +25,28 @@ describe('FlightsUseCases Test', () => {
             {
               flight: {
                 getAll: jest.fn(() => true),
+                create: jest.fn(() => true),
+              },
+              airPlaneTicket:{
+                create: jest.fn(() => true)
               }
             }),
         },
-        {
-          provide: FlightFactoryService,
-          useFactory: () => (
-            {
-              createNewFlight: jest.fn(() => true),
-            }),
-        },
+        // {
+        //   provide: FlightFactoryService,
+        //   useFactory: () => (
+        //     {
+        //       createNewFlight: jest.fn(() => true),
+        //     }),
+        // },
         {
           provide: EventEmitter2,
           useFactory: () => (
             {
               emit: jest.fn(() => true),
             }),
-        }
+        },
+        FlightFactoryService
       ],
     }).compile();
 
@@ -47,27 +54,68 @@ describe('FlightsUseCases Test', () => {
     flightServices = module.get<FlightServices>(FlightServices);
     eventEmitter = module.get<EventEmitter2>(EventEmitter2);
     flightFactoryService = module.get<FlightFactoryService>(FlightFactoryService);
-    
+
   });
 
   it('shoud return an empty list of Flights', async () => {
 
     jest.spyOn(flightServices, 'getAllFlights').mockImplementation(async () => []);
-    // jest.spyOn(eventEmitter,'emit')
     const flights = await flightServices.getAllFlights();
-    // expect(eventEmitter).last
     expect(flights).toHaveLength(0);
 
   });
 
   it('Should return an list of Flights with one', async () => {
 
-    const flight = new Flight('123','123',new FlightNumber('1234'),new FlightTime(new Date('2020-02-20'),new Date('2020-02-21')));
+    const flight = new Flight('123', '123', new FlightNumber('1234'), new FlightTime(new Date('2020-02-20'), new Date('2020-02-21')));
     jest.spyOn(flightServices, 'getAllFlights').mockImplementation(async () => [flight]);
     const flights = await flightServices.getAllFlights();
 
     expect(flights).toHaveLength(1);
     expect(flights[0]).toBeInstanceOf(Flight);
+  });
+
+  it('Should insert one flight', async () => {
+
+
+    // jest.spyOn(flightServices,'createFlight');
+
+
+    const flight = {
+      "id":"1234",
+      "destinyId": "12345",
+      "originId": "34543",
+      "flightNumber": "125354",
+      "departureTime": "2022-06-10T00:00:00",
+      "arrivalTime": "2022-06-11T00:00:00",
+      "flightTime": "2022-06-10T00:00:00",
+      "tickets": [
+        {
+          "clase": "turist",
+          "price": 50,
+          "quant": 20
+        },
+        {
+          "clase": "first",
+          "price": 120,
+          "quant": 5
+        }
+      ]
+    }
+
+    let anemicFlight = new FlightDto();
+    anemicFlight.departureTime = new Date(flight.departureTime);
+    anemicFlight.arrivalTime = new Date(flight.arrivalTime);
+    anemicFlight.tickets = flight.tickets;
+    anemicFlight.destinyId = flight.destinyId;
+    anemicFlight.originId = flight.originId;
+
+    const flightDomain = await flightServices.createFlight(anemicFlight);
+
+    jest.spyOn(dataServices.flight, 'create').mockImplementation(async () => new Flight() );
+
+    // expect(flights).toHaveLength(1);
+    // expect(flightFactoryService).toBeInstanceOf(Flight);
   });
 
 

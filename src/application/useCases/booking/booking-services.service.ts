@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Console } from 'console';
 
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { CreateBookingDto, UpdateBookingDto } from 'src/application/dto/booking.dto';
@@ -27,8 +28,7 @@ export class BookingServices {
     const booking = await this.bookingFactoryService.createNewBooking(createBookingDto);
 
     const createdBooking =await this.dataServices.booking.create(booking);
-
-    
+  
     this.eventEmitter.emit(
       'booking.created',
       createdBooking

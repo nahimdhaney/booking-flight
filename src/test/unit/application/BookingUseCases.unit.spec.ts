@@ -10,12 +10,15 @@ import { AccountReceivable } from 'src/domain/accountReceivable/model';
 import { Amount } from 'src/shared/ValueObjects/amount';
 import { emit } from 'process';
 import { EventEmitter } from 'stream';
+import { CreateBookingDto } from 'src/application/dto/booking.dto';
+import { AirPlaneTicketCommands } from 'src/application/useCases/airPlaneTicket';
 
 describe('BookingsUseCases Test', () => {
   let dataServices: IDataServices;
   let bookingFactoryService: BookingFactoryService;
   let eventEmitter: EventEmitter2;
   let bookingServices: BookingServices;
+  let airplaneTicket: AirPlaneTicketCommands;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -27,6 +30,7 @@ describe('BookingsUseCases Test', () => {
             {
               booking: {
                 getAll: jest.fn(() => true),
+                create: jest.fn(() => true),
               }
             }),
         },
@@ -37,13 +41,8 @@ describe('BookingsUseCases Test', () => {
               createNewBooking: jest.fn(() => true),
             }),
         },
-        {
-          provide: EventEmitter2,
-          useFactory: () => (
-            {
-              emit: jest.fn(() => true),
-            }),
-        }
+        EventEmitter2,
+        AirPlaneTicketCommands
       ],
     }).compile();
 
@@ -51,7 +50,7 @@ describe('BookingsUseCases Test', () => {
     bookingServices = module.get<BookingServices>(BookingServices);
     eventEmitter = module.get<EventEmitter2>(EventEmitter2);
     bookingFactoryService = module.get<BookingFactoryService>(BookingFactoryService);
-
+    airplaneTicket = module.get<AirPlaneTicketCommands>(AirPlaneTicketCommands);
   });
 
   it('shoud return an empty list of Bookings', async () => {
@@ -59,7 +58,7 @@ describe('BookingsUseCases Test', () => {
     jest.spyOn(bookingServices, 'getAllBookings').mockImplementation(async () => []);
     const bookings = await bookingServices.getAllBookings();
     expect(bookings).toHaveLength(0);
-
+    
   });
 
   it('Should return an list of Bookings with one', async () => {
@@ -80,6 +79,25 @@ describe('BookingsUseCases Test', () => {
     expect(bookings).toHaveLength(1);
     expect(bookings[0]).toBeInstanceOf(Booking);
   });
+
+
+
+  it('Should insert a booking with one', async () => {
+
+    const bookingDto = new CreateBookingDto()
+    bookingDto.airPlaneTicket = 'uid',
+    bookingDto.date = new Date();
+    bookingDto.flight = 'uid';
+    bookingDto.passanger = 'uid-passanger';
+    bookingDto.reservationNumber = '12345';
+    bookingDto.value = 12
+    await bookingServices.createBooking(bookingDto);
+    jest.spyOn(dataServices.booking, 'create')
+
+    expect(dataServices.booking.create).toBeCalled()
+
+  });
+
 
 
 

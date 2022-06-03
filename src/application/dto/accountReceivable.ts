@@ -1,12 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { v4 as uuid } from 'uuid';
+// import { PartialType } from '@nestjs/mapped-types';
+// import { v4 as uuid } from 'uuid';
 
-export class AccountReceivableDto {
+// export class AccountReceivableDto {
 
-  id: uuid;
+//   id: uuid;
   
-  amount:number;
+//   amount:number;
   
-}
+// }
 
-export class UpdateAccountReceivableDto extends PartialType(AccountReceivableDto) {}
+// export class UpdateAccountReceivableDto extends PartialType(AccountReceivableDto) {}

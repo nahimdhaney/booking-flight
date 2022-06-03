@@ -48,7 +48,7 @@ export class FlightFactoryService {
       }
       tickets.push(ticket)
     }
-    console.log(tickets);
+    // console.log(tickets);
     return tickets;
   }
 

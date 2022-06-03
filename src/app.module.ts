@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DataServicesModule } from './application/services/data-service/data-services.module';
 import { FlightServicesModule } from './application/useCases/flight';
 import { EventEmitterModule } from '@nestjs/event-emitter';
@@ -15,12 +13,11 @@ import { PaymentServicesModule } from './application/useCases/payment';
     DataServicesModule, FlightServicesModule,
     AirPlaneTicketServicesModule, BookingServicesModule,
     PassangerServicesModule,PaymentServicesModule],
-  controllers: [AppController,
+  controllers: [
     FlightController,
     BookingController,
     PassangerController,
     PaymentController
   ],
-  providers: [AppService],
 })
 export class AppModule { }
