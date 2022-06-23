@@ -8,6 +8,7 @@ import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 import { FlightDto } from 'src/application/dto/flight.dto';
 import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
+import { RowTicketDto } from 'src/application/dto/rowTicket.dto';
 
 describe('FlightsUseCases Test', () => {
   let dataServices: IDataServices;
@@ -27,7 +28,7 @@ describe('FlightsUseCases Test', () => {
                 getAll: jest.fn(() => true),
                 create: jest.fn(() => true),
               },
-              airPlaneTicket:{
+              airPlaneTicket: {
                 create: jest.fn(() => true)
               }
             }),
@@ -77,12 +78,8 @@ describe('FlightsUseCases Test', () => {
 
   it('Should insert one flight', async () => {
 
-
-    // jest.spyOn(flightServices,'createFlight');
-
-
     const flight = {
-      "id":"1234",
+      "id": "1234",
       "destinyId": "12345",
       "originId": "34543",
       "flightNumber": "125354",
@@ -90,18 +87,29 @@ describe('FlightsUseCases Test', () => {
       "arrivalTime": "2022-06-11T00:00:00",
       "flightTime": "2022-06-10T00:00:00",
       "tickets": [
-        {
-          "clase": "turist",
-          "price": 50,
-          "quant": 20
-        },
-        {
-          "clase": "first",
-          "price": 120,
-          "quant": 5
-        }
       ]
     }
+    let rowTicketDtos: Array<RowTicketDto>;
+
+    let rowTicket1 = new RowTicketDto()
+
+    rowTicket1 = {
+      "clase": "turist",
+      "price": 50,
+      "quant": 20
+    };
+
+    let rowTicket2 = new RowTicketDto()
+
+    rowTicket2 = {
+      "clase": "first",
+      "price": 50,
+      "quant": 20
+    };
+    rowTicketDtos = []
+    rowTicketDtos.push(rowTicket1);
+    rowTicketDtos.push(rowTicket2);
+    flight.tickets = rowTicketDtos;
 
     let anemicFlight = new FlightDto();
     anemicFlight.departureTime = new Date(flight.departureTime);
@@ -112,7 +120,7 @@ describe('FlightsUseCases Test', () => {
 
     const flightDomain = await flightServices.createFlight(anemicFlight);
 
-    jest.spyOn(dataServices.flight, 'create').mockImplementation(async () => new Flight() );
+    jest.spyOn(dataServices.flight, 'create').mockImplementation(async () => new Flight());
 
     // expect(flights).toHaveLength(1);
     // expect(flightFactoryService).toBeInstanceOf(Flight);

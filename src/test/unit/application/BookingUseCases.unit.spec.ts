@@ -8,8 +8,6 @@ import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
 import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
 import { AccountReceivable } from 'src/domain/accountReceivable/model';
 import { Amount } from 'src/shared/ValueObjects/amount';
-import { emit } from 'process';
-import { EventEmitter } from 'stream';
 import { CreateBookingDto } from 'src/application/dto/booking.dto';
 import { AirPlaneTicketCommands } from 'src/application/useCases/airPlaneTicket';
 
