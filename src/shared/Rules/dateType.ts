@@ -1,5 +1,5 @@
 
-import { BusinessRule } from '../core/businessRule';
+import { BusinessRule } from '../Core/businessRule';
 
 export class Datetype implements BusinessRule {
   data: Date;

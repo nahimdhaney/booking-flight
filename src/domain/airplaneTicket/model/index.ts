@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Seat } from 'src/shared/ValueObjects/seat';
 import { Price } from 'src/shared/ValueObjects/price';
-import { Entity } from 'src/shared/core/entity';
+import { Entity } from 'src/shared/Core/entity';
 
 export class AirPlaneTicket extends Entity<uuid> {
   

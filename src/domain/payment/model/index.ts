@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { AggregateRoot } from 'src/shared/core/aggregateRoot';
+import { AggregateRoot } from 'src/shared/Core/aggregateRoot';
 import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
 import { Amount } from 'src/shared/ValueObjects/amount';
 

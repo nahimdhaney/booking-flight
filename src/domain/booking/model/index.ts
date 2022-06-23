@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { AggregateRoot } from 'src/shared/core/aggregateRoot';
+import { AggregateRoot } from 'src/shared/Core/aggregateRoot';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
 import { AccountReceivable } from 'src/domain/accountReceivable/model';
 
 export class Booking extends AggregateRoot<uuid> {

@@ -6,7 +6,7 @@ import { IDataServices } from 'src/application/abstracts/data-services.abstract'
 import { PaymentDto } from 'src/application/dto/payment.dto';
 import { Payment } from 'src/domain/payment/model';
 import { Amount } from 'src/shared/ValueObjects/amount';
-import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
 
 
 @Injectable()

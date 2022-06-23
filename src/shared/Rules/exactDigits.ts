@@ -1,5 +1,5 @@
 
-import { BusinessRule } from '../core/businessRule';
+import { BusinessRule } from '../Core/businessRule';
 
 export class ExactDigits implements BusinessRule {
   data: string;

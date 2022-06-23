@@ -4,10 +4,7 @@ import { PassangerFactoryService, PassangerServices } from 'src/application/useC
 import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Passanger } from 'src/domain/passanger/model';
-import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
-import { AccountReceivable } from 'src/domain/accountReceivable/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
+
 
 describe('PassangerUseCases Test', () => {
   let dataServices: IDataServices;

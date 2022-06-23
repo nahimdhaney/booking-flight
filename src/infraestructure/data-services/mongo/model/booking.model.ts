@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { v4 as uuid } from 'uuid';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from 'src/shared/ValueObjects/ReservationStatus';
+import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
 import { AccountReceivable } from 'src/domain/accountReceivable/model';
 // import { Author, Genre } from './';
 

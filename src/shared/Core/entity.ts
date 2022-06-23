@@ -1,4 +1,3 @@
-// import { DomainEvent } from "./domainEvent";
 
 export abstract class Entity<TId> {
   public id: TId;
