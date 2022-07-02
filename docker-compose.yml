@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: nahim
+      MONGO_INITDB_ROOT_PASSWORD: aemlpX43elqeuWDB
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+  flightbooking:
+    build: .
+    command: node dist/main.js
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://nahim:aemlpX43elqeuWDB@mongodb2:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+      # - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb+srv://nahim:aemlpX43elqeuWDB@cluster0.0s1dd.mongodb.net/flightMicroservices?retryWrites=true&w=majority
+volumes:
+  mongodb_data_container:
+  flightbooking:
