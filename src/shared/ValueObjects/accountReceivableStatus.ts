@@ -2,9 +2,6 @@
 // import { ExactDigits } from "../Rules/exactDigits";
 // import { OnlyValues } from "../Rules/onlyValues";
 
-
-
-
 // export class ReservationStatus extends ValueObject{
 //     private readonly data: string;
 //     constructor(data: string){

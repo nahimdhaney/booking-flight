@@ -9,65 +9,66 @@ import { FlightFactoryService } from './flight-factory.service';
 
 @Injectable()
 export class FlightServices {
-  constructor(
-    private dataServices: IDataServices,
-    private flightFactoryService: FlightFactoryService,
-    private eventEmitter: EventEmitter2,
-  ) { }
+	constructor(
+		private dataServices: IDataServices,
+		private flightFactoryService: FlightFactoryService,
+		private eventEmitter: EventEmitter2,
+	) {}
 
-  getAllFlights(): Promise<Flight[]> {
-    return this.dataServices.flight.getAll();
-  }
+	getAllFlights(): Promise<Flight[]> {
+		return this.dataServices.flight.getAll();
+	}
 
-  getFlightById(id: any): Promise<Flight> {
+	getFlightById(id: any): Promise<Flight> {
+		return this.dataServices.flight.get(id);
+	}
 
-    return this.dataServices.flight.get(id);
-  }
+	getTicketById(id: any): Promise<AirPlaneTicket> {
+		return this.dataServices.airPlaneTicket.get(id);
+	}
 
-  getTicketById(id: any): Promise<AirPlaneTicket> {
+	async getTicketByFlightIdAndType(
+		flight_id: string,
+		clase: string,
+		status: string,
+	): Promise<AirPlaneTicket> {
+		const airplaneticket = await this.dataServices.airPlaneTicket.query({
+			flight: flight_id,
+			clase: clase,
+			status: status,
+		});
+		// console.log(airplaneticket);
+		return airplaneticket[0];
+	}
 
-    return this.dataServices.airPlaneTicket.get(id);
-  }
+	async createFlight(createFlightDto: FlightDto): Promise<Flight> {
+		const flight = this.flightFactoryService.createNewFlight(createFlightDto);
 
-  async getTicketByFlightIdAndType(flight_id: string,clase:string,status:string): Promise<AirPlaneTicket> {
+		const createdFlight = await this.dataServices.flight.create(flight);
 
-    const airplaneticket = await this.dataServices.airPlaneTicket.query({flight:flight_id,clase:clase,status:status});
-    // console.log(airplaneticket);
-    return airplaneticket[0];
+		for (let index = 0; index < createFlightDto.tickets.length; index++) {
+			const ticketsToCreate = createFlightDto.tickets[index];
+			const tickets = this.flightFactoryService.generateTicketFlight(
+				ticketsToCreate,
+				createdFlight.id,
+			);
 
-  }
+			for (let y = 0; y < tickets.length; y++) {
+				const element = tickets[y];
+				await this.dataServices.airPlaneTicket.create(element);
+			}
+		}
 
-  async createFlight(createFlightDto: FlightDto): Promise<Flight> {
+		this.eventEmitter.emit('flight.created', createdFlight);
 
-    const flight = this.flightFactoryService.createNewFlight(createFlightDto);
+		return createdFlight;
+	}
 
-    const createdFlight = await this.dataServices.flight.create(flight);
-
-    for (let index = 0; index < createFlightDto.tickets.length; index++) {
-
-      const ticketsToCreate = createFlightDto.tickets[index];
-      const tickets = this.flightFactoryService.generateTicketFlight(ticketsToCreate, createdFlight.id);
-      
-      for (let y = 0; y < tickets.length; y++) {
-        const element = tickets[y];
-        await this.dataServices.airPlaneTicket.create(element)
-      }
-      
-    }
-
-    this.eventEmitter.emit(
-      'flight.created',
-      createdFlight
-    );
-
-    return createdFlight;
-  }
-
-  updateFlight(
-    flightId: string,
-    updateFlightDto: UpdateFlightDto,
-  ): Promise<Flight> {
-    const flight = this.flightFactoryService.updateFlight(updateFlightDto);
-    return this.dataServices.flight.update(flightId, flight);
-  }
+	updateFlight(
+		flightId: string,
+		updateFlightDto: UpdateFlightDto,
+	): Promise<Flight> {
+		const flight = this.flightFactoryService.updateFlight(updateFlightDto);
+		return this.dataServices.flight.update(flightId, flight);
+	}
 }

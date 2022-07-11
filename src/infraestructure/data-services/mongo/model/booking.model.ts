@@ -9,30 +9,29 @@ export type BookingDocument = Booking & Document;
 
 @Schema()
 export class Booking {
-  @Prop({ required: true, unique: true })
-  id: uuid;
-  
-  @Prop()
-  reservationNumber: ReservationNumber;
+	@Prop({ required: true, unique: true })
+	id: uuid;
 
-  @Prop()
-  airPlaneTicket: uuid;
+	@Prop()
+	reservationNumber: ReservationNumber;
 
-  @Prop()
-  flight: uuid;
+	@Prop()
+	airPlaneTicket: uuid;
 
-  @Prop()
-  passanger: uuid;
+	@Prop()
+	flight: uuid;
 
-  @Prop()
-  reservationStatus: ReservationStatus;
+	@Prop()
+	passanger: uuid;
 
-  @Prop()
-  date: Date;
+	@Prop()
+	reservationStatus: ReservationStatus;
 
-  @Prop()
-  accountReceivable : AccountReceivable;
-  
+	@Prop()
+	date: Date;
+
+	@Prop()
+	accountReceivable: AccountReceivable;
 }
 
 export const BookingSchema = SchemaFactory.createForClass(Booking);

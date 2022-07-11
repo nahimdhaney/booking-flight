@@ -3,8 +3,8 @@ import { DataServicesModule } from 'src/application/services/data-service/data-s
 import { AirPlaneTicketCommands } from './airPlaneTicket-commands';
 
 @Module({
-  imports: [DataServicesModule],
-  providers: [AirPlaneTicketCommands],
-  exports: [AirPlaneTicketCommands],
+	imports: [DataServicesModule],
+	providers: [AirPlaneTicketCommands],
+	exports: [AirPlaneTicketCommands],
 })
 export class AirPlaneTicketServicesModule {}

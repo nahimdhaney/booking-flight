@@ -1,11 +1,7 @@
-
 export class RowTicketDto {
+	clase: string;
 
-  clase: string;
+	price: number;
 
-  price: number;
-
-  quant:number;
-
+	quant: number;
 }
-

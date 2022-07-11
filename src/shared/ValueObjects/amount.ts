@@ -1,21 +1,16 @@
-import { ValueObject } from "../Core/valueObject";
-import { Number } from "../Rules/number";
+import { ValueObject } from '../Core/valueObject';
+import { Number } from '../Rules/number';
 
+export class Amount extends ValueObject {
+	public readonly data: number;
 
+	constructor(data: number) {
+		super();
+		this.validate(new Number(data));
+		this.data = data;
+	}
 
-
-export class Amount extends ValueObject{
-    public readonly data: number;
-
-    constructor(data: number){
-        super();
-        this.validate(new Number(data));
-        this.data = data;
-    }
-
-    getData(): number {
-        return this.data;
-    }
-
-
+	getData(): number {
+		return this.data;
+	}
 }

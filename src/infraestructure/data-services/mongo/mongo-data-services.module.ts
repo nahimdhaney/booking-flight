@@ -4,51 +4,51 @@ import { IDataServices } from 'src/application/abstracts/data-services.abstract'
 // import { IDataServices } from '../../../core';
 import { DATA_BASE_CONFIGURATION } from '../../../configuration';
 import {
-  AirPlaneTicket,
-  AirPlaneTicketSchema,
-  Booking,
-  BookingSchema,
-  Flight,
-  FlightSchema,
-  Passanger,
-  PassangerSchema,
-  Payment,
-  PaymentSchema,
+	AirPlaneTicket,
+	AirPlaneTicketSchema,
+	Booking,
+	BookingSchema,
+	Flight,
+	FlightSchema,
+	Passanger,
+	PassangerSchema,
+	Payment,
+	PaymentSchema,
 } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Flight.name,
-        schema: FlightSchema
-      },
-      {
-        name: AirPlaneTicket.name,
-        schema: AirPlaneTicketSchema
-      },
-      {
-        name: Booking.name,
-        schema: BookingSchema
-      },
-      {
-        name: Passanger.name,
-        schema: PassangerSchema
-      },
-      {
-        name: Payment.name,
-        schema: PaymentSchema
-      },
-    ]),
-    MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),
-  ],
-  providers: [
-    {
-      provide: IDataServices,
-      useClass: MongoDataServices,
-    },
-  ],
-  exports: [IDataServices],
+	imports: [
+		MongooseModule.forFeature([
+			{
+				name: Flight.name,
+				schema: FlightSchema,
+			},
+			{
+				name: AirPlaneTicket.name,
+				schema: AirPlaneTicketSchema,
+			},
+			{
+				name: Booking.name,
+				schema: BookingSchema,
+			},
+			{
+				name: Passanger.name,
+				schema: PassangerSchema,
+			},
+			{
+				name: Payment.name,
+				schema: PaymentSchema,
+			},
+		]),
+		MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),
+	],
+	providers: [
+		{
+			provide: IDataServices,
+			useClass: MongoDataServices,
+		},
+	],
+	exports: [IDataServices],
 })
-export class MongoDataServicesModule { }
+export class MongoDataServicesModule {}

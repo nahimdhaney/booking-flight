@@ -4,27 +4,26 @@ import { Price } from 'src/shared/ValueObjects/price';
 import { Entity } from 'src/shared/Core/entity';
 
 export class AirPlaneTicket extends Entity<uuid> {
-  
-  id;
-  code: Seat ;
-  price: Price;
-  flight: uuid;
-  clase:string;
-  status: string;
+	id;
+	code: Seat;
+	price: Price;
+	flight: uuid;
+	clase: string;
+	status: string;
 
-  constructor(
-    code: Seat,
-    price: Price,
-    flight: uuid,
-    clase: string,
-    status: string,
-  ) {
-    super();
-    this.id = uuid();
-    this.code = code;
-    this.price= price;
-    this.flight = flight;
-    this.clase = clase;
-    this.status = status;
-  }
+	constructor(
+		code: Seat,
+		price: Price,
+		flight: uuid,
+		clase: string,
+		status: string,
+	) {
+		super();
+		this.id = uuid();
+		this.code = code;
+		this.price = price;
+		this.flight = flight;
+		this.clase = clase;
+		this.status = status;
+	}
 }

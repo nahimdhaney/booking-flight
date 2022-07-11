@@ -1,0 +1,6 @@
+# top-most EditorConfig file
+root = true
+
+#  use tabs for indentation.
+[*]
+indent_style = tab

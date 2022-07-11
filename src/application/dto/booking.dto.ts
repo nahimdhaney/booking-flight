@@ -3,27 +3,25 @@ import { PartialType } from '@nestjs/mapped-types';
 import { v4 as uuid } from 'uuid';
 
 export class CreateBookingDto {
+	id: uuid;
 
-  id:uuid;
+	@IsString()
+	@IsNotEmpty()
+	reservationNumber: string;
 
-  @IsString()
-  @IsNotEmpty()
-  reservationNumber: string;
+	@IsString()
+	@IsNotEmpty()
+	airPlaneTicket: uuid;
 
-  @IsString()
-  @IsNotEmpty()
-  airPlaneTicket: uuid;
-  
-  flight: uuid;
+	flight: uuid;
 
-  passanger: uuid;
+	passanger: uuid;
 
-  reservationStatus: string;
+	reservationStatus: string;
 
-  date: Date;
+	date: Date;
 
-  value: number;
-
+	value: number;
 }
 
 export class UpdateBookingDto extends PartialType(CreateBookingDto) {}

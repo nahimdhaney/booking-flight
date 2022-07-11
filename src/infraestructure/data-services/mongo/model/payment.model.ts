@@ -10,19 +10,17 @@ export type PaymentDocument = Payment & Document;
 
 @Schema()
 export class Payment {
+	@Prop({ required: true })
+	id: uuid;
 
-  @Prop({ required: true })
-  id: uuid;
+	@Prop()
+	transactionNumber: TransactionNumber;
 
-  @Prop()
-  transactionNumber: TransactionNumber;
+	@Prop()
+	amount: Amount;
 
-  @Prop()
-  amount: Amount;
-
-  @Prop()
-  booking: uuid;
-
+	@Prop()
+	booking: uuid;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);

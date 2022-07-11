@@ -4,8 +4,8 @@ import { PassangerFactoryService } from './passanger-factory.service';
 import { PassangerServices } from './passanger-services.service';
 
 @Module({
-  imports: [DataServicesModule],
-  providers: [PassangerFactoryService, PassangerServices],
-  exports: [PassangerFactoryService, PassangerServices],
+	imports: [DataServicesModule],
+	providers: [PassangerFactoryService, PassangerServices],
+	exports: [PassangerFactoryService, PassangerServices],
 })
 export class PassangerServicesModule {}

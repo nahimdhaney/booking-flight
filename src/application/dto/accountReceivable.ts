@@ -4,9 +4,9 @@
 // export class AccountReceivableDto {
 
 //   id: uuid;
-  
+
 //   amount:number;
-  
+
 // }
 
 // export class UpdateAccountReceivableDto extends PartialType(AccountReceivableDto) {}

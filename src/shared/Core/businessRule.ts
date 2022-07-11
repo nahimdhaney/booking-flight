@@ -1,5 +1,4 @@
 export interface BusinessRule {
-    message: string;
-    validate(): boolean;
-  }
-  
+	message: string;
+	validate(): boolean;
+}

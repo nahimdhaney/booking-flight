@@ -4,8 +4,8 @@ import { PaymentFactoryService } from './payment-factory.service';
 import { PaymentServices } from './payment-services.service';
 
 @Module({
-  imports: [DataServicesModule],
-  providers: [PaymentFactoryService, PaymentServices],
-  exports: [PaymentFactoryService, PaymentServices],
+	imports: [DataServicesModule],
+	providers: [PaymentFactoryService, PaymentServices],
+	exports: [PaymentFactoryService, PaymentServices],
 })
 export class PaymentServicesModule {}

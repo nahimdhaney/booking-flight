@@ -7,23 +7,24 @@ export type AirPlaneTicketDocument = AirPlaneTicket & Document;
 
 @Schema()
 export class AirPlaneTicket {
-  @Prop({ required: true })
-  id: uuid;
+	@Prop({ required: true })
+	id: uuid;
 
-  @Prop()
-  code: Seat;
+	@Prop()
+	code: Seat;
 
-  @Prop()
-  price: Price;
+	@Prop()
+	price: Price;
 
-  @Prop()
-  flight: uuid;
+	@Prop()
+	flight: uuid;
 
-  @Prop()
-  clase:string;
-  
-  @Prop()
-  status: string;
+	@Prop()
+	clase: string;
+
+	@Prop()
+	status: string;
 }
 
-export const AirPlaneTicketSchema = SchemaFactory.createForClass(AirPlaneTicket);
+export const AirPlaneTicketSchema =
+	SchemaFactory.createForClass(AirPlaneTicket);

@@ -1,36 +1,35 @@
-
-import { Test } from "@nestjs/testing";
-import { FlightServices } from "src/application/useCases/flight";
-import { FlightController } from "src/controllers";
+import { Test } from '@nestjs/testing';
+import { FlightServices } from 'src/application/useCases/flight';
+import { FlightController } from 'src/controllers';
 
 describe('FlightController', () => {
-  let flightController: FlightController;
-  let flightService: FlightServices;
+	let flightController: FlightController;
+	let flightService: FlightServices;
 
-  beforeEach(async () => {
+	beforeEach(async () => {
+		const module = await Test.createTestingModule({
+			providers: [
+				FlightController,
+				{
+					provide: FlightServices,
+					useFactory: () => ({
+						getAllFlights: jest.fn(() => true),
+					}),
+				},
+			],
+		}).compile();
 
-    const module = await Test.createTestingModule({
-        providers: [
-            FlightController,
-          {
-            provide: FlightServices,
-            useFactory: () => (
-              {
-                getAllFlights: jest.fn(() => true),
-              }),
-          }
-        ],
-      }).compile();
+		flightController = module.get<FlightController>(FlightController);
+		flightService = module.get<FlightServices>(FlightServices);
+	});
 
-      flightController = module.get<FlightController>(FlightController);
-      flightService = module.get<FlightServices>(FlightServices);
-});
-
-  describe('findAll', () => {
-    it('should return an array of flight', async () => {
-      const result = [];
-      jest.spyOn(flightService, 'getAllFlights').mockImplementation(async () => []);
-      expect(await flightController.getAll()).toStrictEqual(result);
-    });
-  });  
+	describe('findAll', () => {
+		it('should return an array of flight', async () => {
+			const result = [];
+			jest
+				.spyOn(flightService, 'getAllFlights')
+				.mockImplementation(async () => []);
+			expect(await flightController.getAll()).toStrictEqual(result);
+		});
+	});
 });

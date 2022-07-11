@@ -12,50 +12,57 @@ import { Price } from 'src/shared/ValueObjects/price';
 import { Seat } from 'src/shared/ValueObjects/seat';
 import { v4 as uuid } from 'uuid';
 
-
 @Injectable()
 export class FlightFactoryService {
+	createNewFlight(createFlightDto: FlightDto) {
+		const number = createFlightDto.flightNumber;
+		const time = new FlightTime(
+			new Date(createFlightDto.departureTime),
+			new Date(createFlightDto.arrivalTime),
+		);
 
-  createNewFlight(createFlightDto: FlightDto) {
+		const flightToInsert = new Flight(
+			createFlightDto.originId,
+			createFlightDto.destinyId,
+			number,
+			time,
+		);
 
-    const number = createFlightDto.flightNumber;
-    const time = new FlightTime(new Date(createFlightDto.departureTime), new Date(createFlightDto.arrivalTime))
+		return flightToInsert;
+	}
 
-    const flightToInsert = new Flight(
-      createFlightDto.originId,
-      createFlightDto.destinyId,
-      number, time);
+	generateTicketFlight(rowTicket: RowTicketDto, flight: uuid) {
+		const tickets = [];
+		const alphabet = String.fromCharCode(...Array(123).keys())
+			.slice(97)
+			.toUpperCase();
+		let letter = 0;
+		let code = 1;
+		for (let index = 0; index < rowTicket.quant; index++) {
+			const seat = new Seat(rowTicket.clase + '-' + alphabet[letter] + code);
+			const price = new Price(rowTicket.price);
+			const ticket = new AirPlaneTicket(
+				seat,
+				price,
+				flight,
+				rowTicket.clase,
+				'open',
+			);
+			if (index % 9 == 0) {
+				letter++;
+				code = 1;
+			} else {
+				code++;
+			}
+			tickets.push(ticket);
+		}
+		// console.log(tickets);
+		return tickets;
+	}
 
-    return flightToInsert;
-  }
+	updateFlight(updateFlightDto: UpdateFlightDto) {
+		const newFlight = new Flight();
 
-
-  generateTicketFlight(rowTicket: RowTicketDto,flight: uuid) {
-
-    let tickets = []
-    let alphabet = String.fromCharCode(...Array(123).keys()).slice(97).toUpperCase();
-    let letter = 0;
-    let code = 1;
-    for (let index = 0; index < rowTicket.quant; index++) {
-      let seat = new Seat(rowTicket.clase + "-" + alphabet[letter] + code);
-      let price = new Price(rowTicket.price);
-      let ticket = new AirPlaneTicket(seat, price,flight,rowTicket.clase,'open');
-      if (index % 9 == 0) {
-        letter++;
-        code = 1;
-      } else {
-        code++;
-      }
-      tickets.push(ticket)
-    }
-    // console.log(tickets);
-    return tickets;
-  }
-
-
-  updateFlight(updateFlightDto: UpdateFlightDto) {
-    const newFlight = new Flight();
-
-    return newFlight;
-  }
+		return newFlight;
+	}
 }

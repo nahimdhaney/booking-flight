@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateBookingDto, UpdateBookingDto } from 'src/application/dto/booking.dto';
+import {
+	CreateBookingDto,
+	UpdateBookingDto,
+} from 'src/application/dto/booking.dto';
 import { v4 as uuid } from 'uuid';
 import { Booking } from 'src/domain/booking/model';
 import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
@@ -8,29 +11,29 @@ import { Amount } from 'src/shared/ValueObjects/amount';
 import { AccountReceivable } from 'src/domain/accountReceivable/model';
 @Injectable()
 export class BookingFactoryService {
-    createNewBooking(createBookingDto: CreateBookingDto) {
-        const number = createBookingDto.reservationNumber;
-        const reservationNumber = new ReservationNumber(number);
+	createNewBooking(createBookingDto: CreateBookingDto) {
+		const number = createBookingDto.reservationNumber;
+		const reservationNumber = new ReservationNumber(number);
 
-        // obtain some uuid
-        // TODO  
-        
-        let account = new AccountReceivable(new Amount(createBookingDto.value));
+		// obtain some uuid
+		// TODO
 
-        return new Booking(
-            reservationNumber,
-            createBookingDto.airPlaneTicket,
-            new uuid(),
-            createBookingDto.passanger,
-            new ReservationStatus(createBookingDto.reservationStatus),
-            new Date(),
-            account
-        );
-    }
+		const account = new AccountReceivable(new Amount(createBookingDto.value));
 
-    updateBooking(updateBookingDto: UpdateBookingDto) {
-        const newBooking = new Booking();
+		return new Booking(
+			reservationNumber,
+			createBookingDto.airPlaneTicket,
+			new uuid(),
+			createBookingDto.passanger,
+			new ReservationStatus(createBookingDto.reservationStatus),
+			new Date(),
+			account,
+		);
+	}
 
-        return newBooking;
-    }
+	updateBooking(updateBookingDto: UpdateBookingDto) {
+		const newBooking = new Booking();
+
+		return newBooking;
+	}
 }

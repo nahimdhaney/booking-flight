@@ -5,17 +5,17 @@ export type PassangerDocument = Passanger & Document;
 
 @Schema()
 export class Passanger {
-  @Prop({ required: true })
-  id: uuid;
+	@Prop({ required: true })
+	id: uuid;
 
-  @Prop()
-  name: string;
+	@Prop()
+	name: string;
 
-  @Prop()
-  lastName: string;
+	@Prop()
+	lastName: string;
 
-  @Prop()
-  passport: string;
+	@Prop()
+	passport: string;
 }
 
 export const PassangerSchema = SchemaFactory.createForClass(Passanger);

@@ -1,3 +1,3 @@
 export interface Exception {
-    throw(message: string);
+	throw(message: string);
 }

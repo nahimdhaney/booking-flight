@@ -4,27 +4,26 @@ import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
 @Schema()
 export class Flight {
-  @Prop({ required: true, unique: true })
-  id: uuid;
+	@Prop({ required: true, unique: true })
+	id: uuid;
 
-  @Prop()
-  destinyId: uuid;
+	@Prop()
+	destinyId: uuid;
 
-  @Prop()
-  originId: uuid;
+	@Prop()
+	originId: uuid;
 
-  @Prop()
-  flightNumber:FlightNumber;
+	@Prop()
+	flightNumber: FlightNumber;
 
-  // @Prop()
-  // departureTime:Date;
+	// @Prop()
+	// departureTime:Date;
 
-  // @Prop()
-  // arrivalTime:Date;
+	// @Prop()
+	// arrivalTime:Date;
 
-  @Prop()
-  flightTime:FlightTime;
-  
+	@Prop()
+	flightTime: FlightTime;
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);

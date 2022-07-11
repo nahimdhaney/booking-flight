@@ -1,4 +1,3 @@
-import { IsString, IsNotEmpty } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
 import { FlightTime } from 'src/shared/ValueObjects/flightTime';
@@ -6,23 +5,21 @@ import { v4 as uuid } from 'uuid';
 import { RowTicketDto } from './rowTicket.dto';
 
 export class FlightDto {
+	id: uuid;
 
-  id: uuid;
+	destinyId: uuid;
 
-  destinyId: uuid;
+	originId: uuid;
 
-  originId: uuid;
+	flightNumber: FlightNumber;
 
-  flightNumber:FlightNumber;
+	departureTime: Date;
 
-  departureTime:Date;
-  
-  arrivalTime:Date;
-  
-  flightTime:FlightTime;
+	arrivalTime: Date;
 
-  tickets:Array<RowTicketDto>
-  
+	flightTime: FlightTime;
+
+	tickets: Array<RowTicketDto>;
 }
 
 export class UpdateFlightDto extends PartialType(FlightDto) {}
