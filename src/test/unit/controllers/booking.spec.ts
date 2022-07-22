@@ -30,9 +30,9 @@ describe('BookingController', () => {
 	describe('findAll', () => {
 		it('should return an array of booking', async () => {
 			const result = [];
-			jest
-				.spyOn(bookingService, 'getAllBookings')
-				.mockImplementation(async () => []);
+			jest.spyOn(bookingService, 'getAllBookings').mockImplementation(
+                async () => [],
+            );
 			expect(await bookingController.getAll()).toStrictEqual(result);
 		});
 	});

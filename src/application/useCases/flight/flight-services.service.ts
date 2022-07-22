@@ -37,12 +37,12 @@ export class FlightServices {
 			clase: clase,
 			status: status,
 		});
-		// console.log(airplaneticket);
 		return airplaneticket[0];
 	}
 
 	async createFlight(createFlightDto: FlightDto): Promise<Flight> {
-		const flight = this.flightFactoryService.createNewFlight(createFlightDto);
+		const flight =
+			this.flightFactoryService.createNewFlight(createFlightDto);
 
 		const createdFlight = await this.dataServices.flight.create(flight);
 

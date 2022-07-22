@@ -49,11 +49,15 @@ export class MongoDataServices
 			this.AirplaneRepository,
 			['flight'],
 		);
-		this.booking = new MongoGenericRepository<Booking>(this.BookingRepository);
+		this.booking = new MongoGenericRepository<Booking>(
+            this.BookingRepository,
+        );
 		this.passanger = new MongoGenericRepository<Passanger>(
 			this.PassangerRepository,
 		);
-		this.payment = new MongoGenericRepository<Payment>(this.PaymentRepository);
+		this.payment = new MongoGenericRepository<Payment>(
+            this.PaymentRepository,
+        );
 		mongoose.set('debug', true);
 	}
 }

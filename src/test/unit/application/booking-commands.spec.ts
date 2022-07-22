@@ -54,9 +54,9 @@ describe('BookingCommand Test', () => {
 			new AccountReceivable(new Amount(100)),
 		);
 
-		jest
-			.spyOn(dataServices.booking, 'get')
-			.mockImplementation(async () => booking);
+		jest.spyOn(dataServices.booking, 'get').mockImplementation(
+            async () => booking,
+        );
 		jest.spyOn(dataServices.booking, 'update');
 		await bookingCommands.handlePaymentCreatedEvent(payment);
 		expect(dataServices.booking.get).toBeCalled();

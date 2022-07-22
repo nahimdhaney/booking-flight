@@ -26,9 +26,9 @@ describe('FlightController', () => {
 	describe('findAll', () => {
 		it('should return an array of flight', async () => {
 			const result = [];
-			jest
-				.spyOn(flightService, 'getAllFlights')
-				.mockImplementation(async () => []);
+			jest.spyOn(flightService, 'getAllFlights').mockImplementation(
+                async () => [],
+            );
 			expect(await flightController.getAll()).toStrictEqual(result);
 		});
 	});

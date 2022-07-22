@@ -60,9 +60,9 @@ describe('FlightsUseCases Test', () => {
 	});
 
 	it('shoud return an empty list of Flights', async () => {
-		jest
-			.spyOn(flightServices, 'getAllFlights')
-			.mockImplementation(async () => []);
+		jest.spyOn(flightServices, 'getAllFlights').mockImplementation(
+            async () => [],
+        );
 		const flights = await flightServices.getAllFlights();
 		expect(flights).toHaveLength(0);
 	});
@@ -74,9 +74,9 @@ describe('FlightsUseCases Test', () => {
 			new FlightNumber('1234'),
 			new FlightTime(new Date('2020-02-20'), new Date('2020-02-21')),
 		);
-		jest
-			.spyOn(flightServices, 'getAllFlights')
-			.mockImplementation(async () => [flight]);
+		jest.spyOn(flightServices, 'getAllFlights').mockImplementation(
+            async () => [flight],
+        );
 		const flights = await flightServices.getAllFlights();
 
 		expect(flights).toHaveLength(1);
@@ -125,9 +125,9 @@ describe('FlightsUseCases Test', () => {
 
 		const flightDomain = await flightServices.createFlight(anemicFlight);
 
-		jest
-			.spyOn(dataServices.flight, 'create')
-			.mockImplementation(async () => new Flight());
+		jest.spyOn(dataServices.flight, 'create').mockImplementation(
+            async () => new Flight(),
+        );
 
 		// expect(flights).toHaveLength(1);
 		// expect(flightFactoryService).toBeInstanceOf(Flight);

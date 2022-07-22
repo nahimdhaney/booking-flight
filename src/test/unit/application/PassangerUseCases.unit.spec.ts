@@ -50,9 +50,9 @@ describe('PassangerUseCases Test', () => {
 	});
 
 	it('shoud return an empty list of Passangers', async () => {
-		jest
-			.spyOn(passangerServices, 'getAllPassangers')
-			.mockImplementation(async () => []);
+		jest.spyOn(passangerServices, 'getAllPassangers').mockImplementation(
+            async () => [],
+        );
 		const passangers = await passangerServices.getAllPassangers();
 		expect(passangers).toHaveLength(0);
 	});
@@ -60,9 +60,9 @@ describe('PassangerUseCases Test', () => {
 	it('Should return an list of Passangers with one', async () => {
 		const passanger = new Passanger('Nahim', 'Terrazas', '9020353SC');
 
-		jest
-			.spyOn(passangerServices, 'getAllPassangers')
-			.mockImplementation(async () => [passanger]);
+		jest.spyOn(passangerServices, 'getAllPassangers').mockImplementation(
+            async () => [passanger],
+        );
 
 		const passangers = await passangerServices.getAllPassangers();
 		expect(passangers).toHaveLength(1);

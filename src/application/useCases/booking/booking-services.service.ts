@@ -42,7 +42,8 @@ export class BookingServices {
 		BookingId: string,
 		updateBookingDto: UpdateBookingDto,
 	): Promise<Booking> {
-		const booking = this.bookingFactoryService.updateBooking(updateBookingDto);
+		const booking =
+			this.bookingFactoryService.updateBooking(updateBookingDto);
 		return this.dataServices.booking.update(BookingId, booking);
 	}
 }
