@@ -26,7 +26,9 @@ export class BookingCommands {
 		if (resultingAmount == 0) {
 			this.eventEmitter.emit('payment.completed', payload.booking);
 
-			bookingToUpdate.reservationStatus = new ReservationStatus('completed');
+			bookingToUpdate.reservationStatus = new ReservationStatus(
+				'completed',
+			);
 		} else {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'parcially-payed',
@@ -37,6 +39,9 @@ export class BookingCommands {
 			resultingAmount,
 		);
 
-		await this.dataServices.booking.update(payload.booking, bookingToUpdate);
+		await this.dataServices.booking.update(
+			payload.booking,
+			bookingToUpdate,
+		);
 	}
 }

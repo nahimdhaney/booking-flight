@@ -19,16 +19,17 @@ describe('PassangerController', () => {
 			],
 		}).compile();
 
-		passangerController = module.get<PassangerController>(PassangerController);
+		passangerController =
+			module.get<PassangerController>(PassangerController);
 		passangerService = module.get<PassangerServices>(PassangerServices);
 	});
 
 	describe('findAll', () => {
 		it('should return an array of passanger', async () => {
 			const result = [];
-			jest
-				.spyOn(passangerService, 'getAllPassangers')
-				.mockImplementation(async () => []);
+			jest.spyOn(passangerService, 'getAllPassangers').mockImplementation(
+				async () => [],
+			);
 			expect(await passangerController.getAll()).toStrictEqual(result);
 		});
 	});

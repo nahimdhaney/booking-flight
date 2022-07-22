@@ -33,7 +33,8 @@ export class PaymentServices {
 		if (!booking) {
 			throw new Error('Not booking found');
 		}
-		const currentValue = booking.accountReceivable.currentValue || undefined;
+		const currentValue =
+			booking.accountReceivable.currentValue || undefined;
 
 		const paymentvalue = new Amount(createPaymentDto.amount);
 
@@ -55,7 +56,8 @@ export class PaymentServices {
 		paymentId: string,
 		updatePaymentDto: UpdatePaymentDto,
 	): Promise<Payment> {
-		const payment = this.paymentFactoryService.updatePayment(updatePaymentDto);
+		const payment =
+			this.paymentFactoryService.updatePayment(updatePaymentDto);
 		return this.dataServices.payment.update(paymentId, payment);
 	}
 }

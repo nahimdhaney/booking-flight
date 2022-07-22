@@ -18,7 +18,9 @@ export class BookingFactoryService {
 		// obtain some uuid
 		// TODO
 
-		const account = new AccountReceivable(new Amount(createBookingDto.value));
+		const account = new AccountReceivable(
+			new Amount(createBookingDto.value),
+		);
 
 		return new Booking(
 			reservationNumber,

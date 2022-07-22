@@ -1,1 +1,1 @@
-export interface IPedidoRepository
+// export interface IPedidoRepository

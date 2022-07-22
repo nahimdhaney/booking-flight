@@ -4,3 +4,4 @@ root = true
 #  use tabs for indentation.
 [*]
 indent_style = tab
+intent_size = 4
