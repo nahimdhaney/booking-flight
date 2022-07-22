@@ -19,8 +19,8 @@ export class BookingFactoryService {
 		// TODO
 
 		const account = new AccountReceivable(
-            new Amount(createBookingDto.value),
-        );
+			new Amount(createBookingDto.value),
+		);
 
 		return new Booking(
 			reservationNumber,

@@ -55,8 +55,8 @@ describe('BookingCommand Test', () => {
 		);
 
 		jest.spyOn(dataServices.booking, 'get').mockImplementation(
-            async () => booking,
-        );
+			async () => booking,
+		);
 		jest.spyOn(dataServices.booking, 'update');
 		await bookingCommands.handlePaymentCreatedEvent(payment);
 		expect(dataServices.booking.get).toBeCalled();

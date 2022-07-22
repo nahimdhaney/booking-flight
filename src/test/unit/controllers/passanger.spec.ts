@@ -28,8 +28,8 @@ describe('PassangerController', () => {
 		it('should return an array of passanger', async () => {
 			const result = [];
 			jest.spyOn(passangerService, 'getAllPassangers').mockImplementation(
-                async () => [],
-            );
+				async () => [],
+			);
 			expect(await passangerController.getAll()).toStrictEqual(result);
 		});
 	});

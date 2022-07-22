@@ -31,8 +31,8 @@ describe('BookingController', () => {
 		it('should return an array of booking', async () => {
 			const result = [];
 			jest.spyOn(bookingService, 'getAllBookings').mockImplementation(
-                async () => [],
-            );
+				async () => [],
+			);
 			expect(await bookingController.getAll()).toStrictEqual(result);
 		});
 	});

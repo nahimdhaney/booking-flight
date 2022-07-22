@@ -27,8 +27,8 @@ describe('PaymentController', () => {
 		it('should return an array of payment', async () => {
 			const result = [];
 			jest.spyOn(paymentService, 'getAllPayments').mockImplementation(
-                async () => [],
-            );
+				async () => [],
+			);
 			expect(await paymentController.getAll()).toStrictEqual(result);
 		});
 	});

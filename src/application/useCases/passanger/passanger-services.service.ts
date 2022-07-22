@@ -25,8 +25,8 @@ export class PassangerServices {
 	}
 
 	async createPassanger(
-        createPassangerDto: PassangerDto,
-    ): Promise<Passanger> {
+		createPassangerDto: PassangerDto,
+	): Promise<Passanger> {
 		const passanger =
 			this.passangerFactoryService.createNewPassanger(createPassangerDto);
 

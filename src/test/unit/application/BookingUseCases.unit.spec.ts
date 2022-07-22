@@ -52,14 +52,14 @@ describe('BookingsUseCases Test', () => {
 			BookingFactoryService,
 		);
 		airplaneTicket = module.get<AirPlaneTicketCommands>(
-            AirPlaneTicketCommands,
-        );
+			AirPlaneTicketCommands,
+		);
 	});
 
 	it('shoud return an empty list of Bookings', async () => {
 		jest.spyOn(bookingServices, 'getAllBookings').mockImplementation(
-            async () => [],
-        );
+			async () => [],
+		);
 		const bookings = await bookingServices.getAllBookings();
 		expect(bookings).toHaveLength(0);
 	});
@@ -76,8 +76,8 @@ describe('BookingsUseCases Test', () => {
 		);
 
 		jest.spyOn(bookingServices, 'getAllBookings').mockImplementation(
-            async () => [booking],
-        );
+			async () => [booking],
+		);
 
 		const bookings = await bookingServices.getAllBookings();
 		expect(bookings).toHaveLength(1);

@@ -53,8 +53,8 @@ describe('PaymentUseCases Test', () => {
 
 	it('shoud return an empty list of Payments', async () => {
 		jest.spyOn(paymentServices, 'getAllPayments').mockImplementation(
-            async () => [],
-        );
+			async () => [],
+		);
 		const payments = await paymentServices.getAllPayments();
 		expect(payments).toHaveLength(0);
 	});
@@ -67,8 +67,8 @@ describe('PaymentUseCases Test', () => {
 		);
 
 		jest.spyOn(paymentServices, 'getAllPayments').mockImplementation(
-            async () => [payment],
-        );
+			async () => [payment],
+		);
 
 		const payments = await paymentServices.getAllPayments();
 		expect(payments).toHaveLength(1);
