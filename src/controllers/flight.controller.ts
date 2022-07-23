@@ -25,6 +25,7 @@ export class FlightController {
 		);
 		const testNoting = {};
 		testNoting;
+		const test2 = {};
 		return ticket;
 	}
 
