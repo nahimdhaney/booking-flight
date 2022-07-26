@@ -23,9 +23,6 @@ export class FlightController {
 			clase,
 			status,
 		);
-		const testNoting = {};
-		testNoting;
-		const test2 = {};
 		return ticket;
 	}
 
