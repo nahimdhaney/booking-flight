@@ -1,0 +1,10 @@
+name: Deploy lightsail
+on:
+  push:
+    branches: 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do deploy
+        run: ssh -i  ${{ secrets.SSH_PRIVATE_KEY }}  bitnami@54.81.7.126 'ls'
