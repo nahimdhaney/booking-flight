@@ -26,4 +26,4 @@ jobs:
               StrictHostKeyChecking no
           END
       - name: Do deploy
-          run: ssh staging 'ls'
+        run: ssh staging 'ls'
