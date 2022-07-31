@@ -25,4 +25,5 @@ jobs:
               IdentityFile ~/.ssh/staging.key
               StrictHostKeyChecking no
           END
-        run: ssh staging 'ls'
+      - name: Do deploy
+          run: ssh staging 'ls'
