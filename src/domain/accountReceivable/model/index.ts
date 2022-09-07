@@ -1,6 +1,8 @@
 import { v4 as uuid } from 'uuid';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { Entity } from 'src/shared/Core/entity';
+import { Entity } from '../../../shared/Core/entity';
+import { Amount } from '../../../shared/ValueObjects/amount';
+// import { Amount } from 'shared/ValueObjects/amount';
+// import { Entity } from 'shared/Core/entity';
 
 export class AccountReceivable extends Entity<uuid> {
 	id;

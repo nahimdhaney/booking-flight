@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { AirPlaneTicket } from '../../../domain/airplaneTicket/model';
+import { Flight } from '../../../domain/flight/model';
+import { IDataServices } from '../../abstracts/data-services.abstract';
+import { FlightDto, UpdateFlightDto } from '../../dto/flight.dto';
 
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
-import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
-import { Flight } from 'src/domain/flight/model';
+// import { IDataServices } from 'application/abstracts/data-services.abstract';
+// import { FlightDto, UpdateFlightDto } from 'application/dto/flight.dto';
+// import { AirPlaneTicket } from 'domain/airplaneTicket/model';
+// import { Flight } from 'domain/flight/model';
+import { MessageProducer } from '../producer/producer.service';
 import { FlightFactoryService } from './flight-factory.service';
 
 @Injectable()
@@ -13,6 +18,7 @@ export class FlightServices {
 		private dataServices: IDataServices,
 		private flightFactoryService: FlightFactoryService,
 		private eventEmitter: EventEmitter2,
+		private producer: MessageProducer,
 	) {}
 
 	getAllFlights(): Promise<Flight[]> {
@@ -60,6 +66,11 @@ export class FlightServices {
 		}
 
 		this.eventEmitter.emit('flight.created', createdFlight);
+
+		this.producer.sendMessage({
+			id: 'id',
+			body: { flight: createdFlight },
+		});
 
 		return createdFlight;
 	}

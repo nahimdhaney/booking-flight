@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { FlightServices } from 'src/application/useCases/flight';
-import { FlightController } from 'src/controllers';
+import { FlightServices } from '../../../application/useCases/flight';
+import { FlightController } from '../../../controllers';
 
 describe('FlightController', () => {
 	let flightController: FlightController;

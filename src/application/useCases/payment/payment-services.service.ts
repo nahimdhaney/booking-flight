@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { PaymentDto, UpdatePaymentDto } from 'src/application/dto/payment.dto';
-import { Payment } from 'src/domain/payment/model';
+// import { IDataServices } from 'application/abstracts/data-services.abstract';
+// import { PaymentDto, UpdatePaymentDto } from 'application/dto/payment.dto';
+// import { Payment } from 'domain/payment/model';
 import { PaymentFactoryService } from './payment-factory.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Booking } from 'src/domain/booking/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { Console } from 'console';
+import { IDataServices } from '../../abstracts/data-services.abstract';
+import { Payment } from '../../../domain/payment/model';
+import { PaymentDto, UpdatePaymentDto } from '../../dto/payment.dto';
+import { Amount } from '../../../shared/ValueObjects/amount';
+// import { Amount } from 'shared/ValueObjects/amount';
 
 @Injectable()
 export class PaymentServices {

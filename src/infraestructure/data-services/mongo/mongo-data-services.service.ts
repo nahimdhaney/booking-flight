@@ -13,8 +13,8 @@ import {
 	Payment,
 	PaymentDocument,
 } from './model';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import mongoose from 'mongoose';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 
 @Injectable()
 export class MongoDataServices

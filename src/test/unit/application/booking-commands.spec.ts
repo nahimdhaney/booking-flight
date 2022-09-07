@@ -1,18 +1,16 @@
-import { Test } from '@nestjs/testing';
-
-import {
-	BookingServices,
-	BookingCommands,
-} from 'src/application/useCases/booking';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Booking } from 'src/domain/booking/model';
-import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
-import { AccountReceivable } from 'src/domain/accountReceivable/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { CreateBookingDto } from 'src/application/dto/booking.dto';
-import { Payment } from 'src/domain/payment/model';
+import { Test } from '@nestjs/testing';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
+import {
+	BookingCommands,
+	BookingServices,
+} from '../../../application/useCases/booking';
+import { AccountReceivable } from '../../../domain/accountReceivable/model';
+import { Booking } from '../../../domain/booking/model';
+import { Payment } from '../../../domain/payment/model';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { ReservationNumber } from '../../../shared/ValueObjects/reservationNumber';
+import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatus';
 
 describe('BookingCommand Test', () => {
 	let dataServices: IDataServices;

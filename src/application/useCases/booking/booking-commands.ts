@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { Payment } from 'src/domain/payment/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
+import { Payment } from '../../../domain/payment/model';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatus';
+import { IDataServices } from '../../abstracts/data-services.abstract';
 
 @Injectable()
 export class BookingCommands {

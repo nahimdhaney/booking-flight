@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DataServicesModule } from 'src/application/services/data-service/data-services.module';
+import { DataServicesModule } from '../../services/data-service/data-services.module';
 import { AirPlaneTicketCommands } from './airPlaneTicket-commands';
 
 @Module({

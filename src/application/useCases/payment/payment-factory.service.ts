@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { PaymentDto, UpdatePaymentDto } from 'src/application/dto/payment.dto';
-import { Payment } from 'src/domain/payment/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
+// import { PaymentDto, UpdatePaymentDto } from 'application/dto/payment.dto';
+// import { Payment } from 'domain/payment/model';
+// import { Amount } from 'shared/ValueObjects/amount';
+// import { TransactionNumber } from 'shared/ValueObjects/transactionNumber';
 import { v4 as uuid } from 'uuid';
+import { Payment } from '../../../domain/payment/model';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { TransactionNumber } from '../../../shared/ValueObjects/transactionNumber';
+import { PaymentDto, UpdatePaymentDto } from '../../dto/payment.dto';
 
 @Injectable()
 export class PaymentFactoryService {

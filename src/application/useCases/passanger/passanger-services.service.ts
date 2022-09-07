@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import {
-	PassangerDto,
-	UpdatePassangerDto,
-} from 'src/application/dto/passanger.dto';
-import { Passanger } from 'src/domain/passanger/model';
 import { PassangerFactoryService } from './passanger-factory.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Passanger } from '../../../domain/passanger/model';
+import { PassangerDto, UpdatePassangerDto } from '../../dto/passanger.dto';
+import { IDataServices } from '../../abstracts/data-services.abstract';
 
 @Injectable()
 export class PassangerServices {

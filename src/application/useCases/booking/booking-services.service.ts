@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Console } from 'console';
+import { Booking } from '../../../domain/booking/model';
+import { IDataServices } from '../../abstracts/data-services.abstract';
+import { CreateBookingDto, UpdateBookingDto } from '../../dto/booking.dto';
 
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import {
-	CreateBookingDto,
-	UpdateBookingDto,
-} from 'src/application/dto/booking.dto';
-import { Booking } from 'src/domain/booking/model';
 import { BookingFactoryService } from './booking-factory.service';
 
 @Injectable()

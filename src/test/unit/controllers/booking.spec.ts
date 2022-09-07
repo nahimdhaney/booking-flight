@@ -1,10 +1,6 @@
-// import { BookingController } from './booking.controller';
-// import { BookingService } from './booking.service';
-
 import { Test } from '@nestjs/testing';
-import { BookingServices } from 'src/application/useCases/booking';
-import { BookingController } from 'src/controllers';
-import { Booking } from 'src/domain/booking/model';
+import { BookingServices } from '../../../application/useCases/booking';
+import { BookingController } from '../../../controllers';
 
 describe('BookingController', () => {
 	let bookingController: BookingController;
