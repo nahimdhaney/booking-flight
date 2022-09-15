@@ -4,6 +4,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Passanger } from '../../../domain/passanger/model';
 import { PassangerDto, UpdatePassangerDto } from '../../dto/passanger.dto';
 import { IDataServices } from '../../abstracts/data-services.abstract';
+import { MessageProducer } from '../producer/producer.service';
 
 @Injectable()
 export class PassangerServices {
@@ -11,6 +12,7 @@ export class PassangerServices {
 		private dataServices: IDataServices,
 		private passangerFactoryService: PassangerFactoryService,
 		private eventEmitter: EventEmitter2,
+		private producer: MessageProducer,
 	) {}
 
 	getAllPassangers(): Promise<Passanger[]> {
@@ -32,6 +34,13 @@ export class PassangerServices {
 		);
 
 		this.eventEmitter.emit('passanger.created', createdPassanger);
+		this.producer.sendMessage({
+			id: createdPassanger.id,
+			body: {
+				passanger: createdPassanger,
+				event: 'PasajeroCreado',
+			},
+		});
 
 		return createdPassanger;
 	}

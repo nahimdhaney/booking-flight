@@ -47,6 +47,12 @@ export class FlightServices {
 	}
 
 	async createFlight(createFlightDto: FlightDto): Promise<Flight> {
+		const existInDatabase = await this.dataServices.flight.get(
+			createFlightDto.id,
+		);
+		if (existInDatabase) {
+			return existInDatabase;
+		}
 		const flight =
 			this.flightFactoryService.createNewFlight(createFlightDto);
 
@@ -68,8 +74,8 @@ export class FlightServices {
 		this.eventEmitter.emit('flight.created', createdFlight);
 
 		this.producer.sendMessage({
-			id: 'id',
-			body: { flight: createdFlight },
+			id: flight.id,
+			body: { flight: createdFlight, event: 'VueloCreado' },
 		});
 
 		return createdFlight;

@@ -7,6 +7,7 @@ import {
 	PassangerServices,
 } from '../../../application/useCases/passanger';
 import { Passanger } from '../../../domain/passanger/model';
+import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PassangerUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -36,6 +37,12 @@ describe('PassangerUseCases Test', () => {
 					provide: EventEmitter2,
 					useFactory: () => ({
 						emit: jest.fn(() => true),
+					}),
+				},
+				{
+					provide: MessageProducer,
+					useFactory: () => ({
+						sendMessage: jest.fn(() => true),
 					}),
 				},
 			],

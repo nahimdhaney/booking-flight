@@ -47,13 +47,6 @@ describe('FlightsUseCases Test', () => {
 						},
 					}),
 				},
-				// {
-				//   provide: FlightFactoryService,
-				//   useFactory: () => (
-				//     {
-				//       createNewFlight: jest.fn(() => true),
-				//     }),
-				// },
 				{
 					provide: EventEmitter2,
 					useFactory: () => ({

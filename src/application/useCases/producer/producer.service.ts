@@ -6,8 +6,8 @@ import { config } from '../../../configuration';
 export class MessageProducer {
 	constructor(private readonly sqsService: SqsService) {}
 	async sendMessage(body: any) {
-		const message = body;
-		console.log(message);
+		const message: any = JSON.parse(JSON.stringify(body));
+		console.log('MessageProducer', message);
 		try {
 			await this.sqsService.send(config.TEST_QUEUE, message);
 		} catch (error) {

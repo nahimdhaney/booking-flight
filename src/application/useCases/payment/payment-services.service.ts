@@ -8,7 +8,7 @@ import { IDataServices } from '../../abstracts/data-services.abstract';
 import { Payment } from '../../../domain/payment/model';
 import { PaymentDto, UpdatePaymentDto } from '../../dto/payment.dto';
 import { Amount } from '../../../shared/ValueObjects/amount';
-// import { Amount } from 'shared/ValueObjects/amount';
+import { MessageProducer } from '../producer/producer.service';
 
 @Injectable()
 export class PaymentServices {

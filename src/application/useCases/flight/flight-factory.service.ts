@@ -22,6 +22,7 @@ export class FlightFactoryService {
 			createFlightDto.destinyId,
 			number,
 			time,
+			createFlightDto.id,
 		);
 
 		return flightToInsert;

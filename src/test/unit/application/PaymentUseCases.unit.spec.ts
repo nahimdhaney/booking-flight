@@ -8,6 +8,7 @@ import {
 import { Payment } from '../../../domain/payment/model';
 import { TransactionNumber } from '../../../shared/ValueObjects/transactionNumber';
 import { Amount } from '../../../shared/ValueObjects/amount';
+import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PaymentUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -37,6 +38,12 @@ describe('PaymentUseCases Test', () => {
 					provide: EventEmitter2,
 					useFactory: () => ({
 						emit: jest.fn(() => true),
+					}),
+				},
+				{
+					provide: MessageProducer,
+					useFactory: () => ({
+						sendMessage: jest.fn(() => true),
 					}),
 				},
 			],

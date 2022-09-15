@@ -4,6 +4,8 @@ import { Console } from 'console';
 import { Booking } from '../../../domain/booking/model';
 import { IDataServices } from '../../abstracts/data-services.abstract';
 import { CreateBookingDto, UpdateBookingDto } from '../../dto/booking.dto';
+import { MessageProducer } from '../producer/producer.service';
+// import { MessageProducer } from '../producer/producer.service';
 
 import { BookingFactoryService } from './booking-factory.service';
 
@@ -13,6 +15,7 @@ export class BookingServices {
 		private dataServices: IDataServices,
 		private bookingFactoryService: BookingFactoryService,
 		private eventEmitter: EventEmitter2,
+		private producer: MessageProducer,
 	) {}
 
 	getAllBookings(): Promise<Booking[]> {
@@ -31,6 +34,11 @@ export class BookingServices {
 		const createdBooking = await this.dataServices.booking.create(booking);
 
 		this.eventEmitter.emit('booking.created', createdBooking);
+
+		this.producer.sendMessage({
+			id: createdBooking.id,
+			body: { booking: createdBooking, event: 'ReservaCreada' },
+		});
 
 		return createdBooking;
 	}
