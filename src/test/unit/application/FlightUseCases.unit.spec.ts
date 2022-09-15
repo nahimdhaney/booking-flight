@@ -39,6 +39,7 @@ describe('FlightsUseCases Test', () => {
 					provide: IDataServices,
 					useFactory: () => ({
 						flight: {
+							get: jest.fn(() => false),
 							getAll: jest.fn(() => true),
 							create: jest.fn(() => true),
 						},
