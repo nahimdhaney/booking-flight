@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 // import { IDataServices } from '../../../core';
-import { DATA_BASE_CONFIGURATION } from '../../../configuration';
+import { config } from '../../../configuration';
 import {
 	AirPlaneTicket,
 	AirPlaneTicketSchema,
@@ -41,7 +41,7 @@ import { MongoDataServices } from './mongo-data-services.service';
 				schema: PaymentSchema,
 			},
 		]),
-		MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),
+		MongooseModule.forRoot(config.mongoConnectionString),
 	],
 	providers: [
 		{

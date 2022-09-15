@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { v4 as uuid } from 'uuid';
-import { ReservationNumber } from 'src/shared/ValueObjects/reservationNumber';
-import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
-import { AccountReceivable } from 'src/domain/accountReceivable/model';
+import { AccountReceivable } from '../../../../domain/accountReceivable/model';
+import { ReservationNumber } from '../../../../shared/ValueObjects/reservationNumber';
+import { ReservationStatus } from '../../../../shared/ValueObjects/reservationStatus';
 // import { Author, Genre } from './';
 
 export type BookingDocument = Booking & Document;

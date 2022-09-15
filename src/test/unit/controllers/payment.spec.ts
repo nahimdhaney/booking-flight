@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { PaymentServices } from 'src/application/useCases/payment';
-import { PaymentController } from 'src/controllers';
+import { PaymentServices } from '../../../application/useCases/payment';
+import { PaymentController } from '../../../controllers';
 
 describe('PaymentController', () => {
 	let paymentController: PaymentController;

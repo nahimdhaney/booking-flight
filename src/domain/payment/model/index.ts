@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { AggregateRoot } from 'src/shared/Core/aggregateRoot';
-import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
-import { Amount } from 'src/shared/ValueObjects/amount';
+import { AggregateRoot } from '../../../shared/Core/aggregateRoot';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { TransactionNumber } from '../../../shared/ValueObjects/transactionNumber';
 
 export class Payment extends AggregateRoot<uuid> {
 	id: uuid;

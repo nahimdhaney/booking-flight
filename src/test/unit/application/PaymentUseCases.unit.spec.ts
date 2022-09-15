@@ -1,14 +1,14 @@
 import { Test } from '@nestjs/testing';
-
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 import {
 	PaymentFactoryService,
 	PaymentServices,
-} from 'src/application/useCases/payment';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Payment } from 'src/domain/payment/model';
-import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
-import { Amount } from 'src/shared/ValueObjects/amount';
+} from '../../../application/useCases/payment';
+import { Payment } from '../../../domain/payment/model';
+import { TransactionNumber } from '../../../shared/ValueObjects/transactionNumber';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PaymentUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -38,6 +38,12 @@ describe('PaymentUseCases Test', () => {
 					provide: EventEmitter2,
 					useFactory: () => ({
 						emit: jest.fn(() => true),
+					}),
+				},
+				{
+					provide: MessageProducer,
+					useFactory: () => ({
+						sendMessage: jest.fn(() => true),
 					}),
 				},
 			],

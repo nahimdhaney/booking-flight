@@ -2,9 +2,14 @@ import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
 import {
 	PassangerDto,
 	UpdatePassangerDto,
-} from 'src/application/dto/passanger.dto';
-import { PassangerServices } from 'src/application/useCases/passanger';
-import { Passanger } from 'src/domain/passanger/model';
+} from '../application/dto/passanger.dto';
+import { PassangerServices } from '../application/useCases/passanger';
+// import {
+// 	PassangerDto,
+// 	UpdatePassangerDto,
+// } from 'application/dto/passanger.dto';
+// import { PassangerServices } from 'application/useCases/passanger';
+// import { Passanger } from 'domain/passanger/model';
 
 @Controller('api/passanger')
 export class PassangerController {

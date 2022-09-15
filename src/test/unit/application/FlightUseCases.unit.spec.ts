@@ -1,23 +1,35 @@
 import { Test } from '@nestjs/testing';
 
+// import {
+// 	FlightFactoryService,
+// 	FlightServices,
+// } from 'application/useCases/flight';
+// import { IDataServices } from 'application/abstracts/data-services.abstract';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 import {
 	FlightFactoryService,
 	FlightServices,
-} from 'src/application/useCases/flight';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Flight } from 'src/domain/flight/model';
-import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
-import { FlightTime } from 'src/shared/ValueObjects/flightTime';
-import { FlightDto } from 'src/application/dto/flight.dto';
-import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
-import { RowTicketDto } from 'src/application/dto/rowTicket.dto';
+} from '../../../application/useCases/flight';
+import { FlightNumber } from '../../../shared/ValueObjects/flightNumber';
+import { FlightTime } from '../../../shared/ValueObjects/flightTime';
+import { RowTicketDto } from '../../../application/dto/rowTicket.dto';
+import { FlightDto } from '../../../application/dto/flight.dto';
+import { Flight } from '../../../domain/flight/model';
+import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+// import { Flight } from 'domain/flight/model';
+// import { FlightNumber } from 'shared/ValueObjects/flightNumber';
+// import { FlightTime } from 'shared/ValueObjects/flightTime';
+// import { FlightDto } from 'application/dto/flight.dto';
+// import { AirPlaneTicket } from 'domain/airplaneTicket/model';
+// import { RowTicketDto } from 'application/dto/rowTicket.dto';
 
 describe('FlightsUseCases Test', () => {
 	let dataServices: IDataServices;
 	let flightFactoryService: FlightFactoryService;
 	let eventEmitter: EventEmitter2;
 	let flightServices: FlightServices;
+	let messageProducer: MessageProducer;
 
 	beforeEach(async () => {
 		const module = await Test.createTestingModule({
@@ -27,6 +39,7 @@ describe('FlightsUseCases Test', () => {
 					provide: IDataServices,
 					useFactory: () => ({
 						flight: {
+							get: jest.fn(() => false),
 							getAll: jest.fn(() => true),
 							create: jest.fn(() => true),
 						},
@@ -35,17 +48,16 @@ describe('FlightsUseCases Test', () => {
 						},
 					}),
 				},
-				// {
-				//   provide: FlightFactoryService,
-				//   useFactory: () => (
-				//     {
-				//       createNewFlight: jest.fn(() => true),
-				//     }),
-				// },
 				{
 					provide: EventEmitter2,
 					useFactory: () => ({
 						emit: jest.fn(() => true),
+					}),
+				},
+				{
+					provide: MessageProducer,
+					useFactory: () => ({
+						sendMessage: jest.fn(() => true),
 					}),
 				},
 				FlightFactoryService,

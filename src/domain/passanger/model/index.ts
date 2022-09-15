@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { AggregateRoot } from 'src/shared/Core/aggregateRoot';
+import { AggregateRoot } from '../../../shared/Core/aggregateRoot';
 
 export class Passanger extends AggregateRoot<uuid> {
 	id: uuid;

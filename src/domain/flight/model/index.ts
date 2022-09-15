@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { AggregateRoot } from 'src/shared/Core/aggregateRoot';
-import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
-import { FlightTime } from 'src/shared/ValueObjects/flightTime';
+import { AggregateRoot } from '../../../shared/Core/aggregateRoot';
+import { FlightNumber } from '../../../shared/ValueObjects/flightNumber';
+import { FlightTime } from '../../../shared/ValueObjects/flightTime';
 
 export class Flight extends AggregateRoot<uuid> {
 	id;
@@ -15,12 +15,13 @@ export class Flight extends AggregateRoot<uuid> {
 		originId?: uuid,
 		flightNumber?: FlightNumber,
 		flightTime?: FlightTime,
+		id?: uuid,
 	) {
 		super();
 		this.destinyId = destinyId;
 		this.originId = originId;
 		this.flightNumber = flightNumber;
 		this.flightTime = flightTime;
-		this.id = uuid();
+		this.id = id ? id : uuid();
 	}
 }

@@ -1,16 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Console } from 'console';
-import { number } from 'joi';
-import { FlightDto, UpdateFlightDto } from 'src/application/dto/flight.dto';
-import { RowTicketDto } from 'src/application/dto/rowTicket.dto';
-import { AirPlaneTicket } from 'src/domain/airplaneTicket/model';
-// import { FlightEntity } from 'src/domain/entities/flight.entity';
-import { Flight } from 'src/domain/flight/model';
-import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
-import { FlightTime } from 'src/shared/ValueObjects/flightTime';
-import { Price } from 'src/shared/ValueObjects/price';
-import { Seat } from 'src/shared/ValueObjects/seat';
 import { v4 as uuid } from 'uuid';
+import { AirPlaneTicket } from '../../../domain/airplaneTicket/model';
+import { Flight } from '../../../domain/flight/model';
+import { FlightTime } from '../../../shared/ValueObjects/flightTime';
+import { Price } from '../../../shared/ValueObjects/price';
+import { Seat } from '../../../shared/ValueObjects/seat';
+import { FlightDto, UpdateFlightDto } from '../../dto/flight.dto';
+import { RowTicketDto } from '../../dto/rowTicket.dto';
 
 @Injectable()
 export class FlightFactoryService {
@@ -26,6 +22,7 @@ export class FlightFactoryService {
 			createFlightDto.destinyId,
 			number,
 			time,
+			createFlightDto.id,
 		);
 
 		return flightToInsert;

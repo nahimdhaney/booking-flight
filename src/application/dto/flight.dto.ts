@@ -1,7 +1,9 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { FlightNumber } from 'src/shared/ValueObjects/flightNumber';
-import { FlightTime } from 'src/shared/ValueObjects/flightTime';
+// import { FlightNumber } from 'shared/ValueObjects/flightNumber';
+// import { FlightTime } from 'shared/ValueObjects/flightTime';
 import { v4 as uuid } from 'uuid';
+import { FlightNumber } from '../../shared/ValueObjects/flightNumber';
+import { FlightTime } from '../../shared/ValueObjects/flightTime';
 import { RowTicketDto } from './rowTicket.dto';
 
 export class FlightDto {

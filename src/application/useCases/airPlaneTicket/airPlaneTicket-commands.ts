@@ -1,8 +1,7 @@
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-
 import { OnEvent } from '@nestjs/event-emitter';
-import { Booking } from 'src/domain/booking/model';
 import { Injectable } from '@nestjs/common';
+import { IDataServices } from '../../abstracts/data-services.abstract';
+import { Booking } from '../../../domain/booking/model';
 
 @Injectable()
 export class AirPlaneTicketCommands {

@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { Payment } from 'src/domain/payment/model';
-import { Amount } from 'src/shared/ValueObjects/amount';
-import { ReservationStatus } from 'src/shared/ValueObjects/reservationStatus';
+import { Payment } from '../../../domain/payment/model';
+import { Amount } from '../../../shared/ValueObjects/amount';
+import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatus';
+import { IDataServices } from '../../abstracts/data-services.abstract';
+import { MessageProducer } from '../producer/producer.service';
 
 @Injectable()
 export class BookingCommands {
 	constructor(
 		private dataServices: IDataServices,
 		private eventEmitter: EventEmitter2,
+		private producer: MessageProducer,
 	) {}
 
 	@OnEvent('payment.created')
@@ -29,10 +31,18 @@ export class BookingCommands {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'completed',
 			);
+			this.producer.sendMessage({
+				id: payload.id,
+				body: { payment: payload, event: 'ReservaPagada' },
+			});
 		} else {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'parcially-payed',
 			);
+			this.producer.sendMessage({
+				id: payload.id,
+				body: { payment: payload, event: 'ReservaPago' },
+			});
 		}
 
 		bookingToUpdate.accountReceivable.currentValue = new Amount(

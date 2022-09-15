@@ -1,9 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { v4 as uuid } from 'uuid';
-import { Price } from 'src/shared/ValueObjects/price';
-import { Seat } from 'src/shared/ValueObjects/seat';
-import { TransactionNumber } from 'src/shared/ValueObjects/transactionNumber';
-import { Amount } from 'src/shared/ValueObjects/amount';
+import { Amount } from '../../../../shared/ValueObjects/amount';
+import { TransactionNumber } from '../../../../shared/ValueObjects/transactionNumber';
+// import { Price } from 'shared/ValueObjects/price';
+// import { Seat } from 'shared/ValueObjects/seat';
+// import { TransactionNumber } from 'shared/ValueObjects/transactionNumber';
+// import { Amount } from 'shared/ValueObjects/amount';
 import { Booking } from './booking.model';
 
 export type PaymentDocument = Payment & Document;

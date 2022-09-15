@@ -1,12 +1,13 @@
 import { Test } from '@nestjs/testing';
 
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 import {
 	PassangerFactoryService,
 	PassangerServices,
-} from 'src/application/useCases/passanger';
-import { IDataServices } from 'src/application/abstracts/data-services.abstract';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Passanger } from 'src/domain/passanger/model';
+} from '../../../application/useCases/passanger';
+import { Passanger } from '../../../domain/passanger/model';
+import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PassangerUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -36,6 +37,12 @@ describe('PassangerUseCases Test', () => {
 					provide: EventEmitter2,
 					useFactory: () => ({
 						emit: jest.fn(() => true),
+					}),
+				},
+				{
+					provide: MessageProducer,
+					useFactory: () => ({
+						sendMessage: jest.fn(() => true),
 					}),
 				},
 			],
