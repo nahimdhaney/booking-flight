@@ -9,6 +9,8 @@ export class PassangerDto {
 	lastName: string;
 
 	passport: string;
+
+	needsAssistance: boolean;
 }
 
 export class UpdatePassangerDto extends PartialType(PassangerDto) {}

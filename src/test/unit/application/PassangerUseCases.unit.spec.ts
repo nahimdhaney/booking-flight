@@ -65,7 +65,12 @@ describe('PassangerUseCases Test', () => {
 	});
 
 	it('Should return an list of Passangers with one', async () => {
-		const passanger = new Passanger('Nahim', 'Terrazas', '9020353SC');
+		const passanger = new Passanger(
+			'Nahim',
+			'Terrazas',
+			'9020353SC',
+			false,
+		);
 
 		jest.spyOn(passangerServices, 'getAllPassangers').mockImplementation(
 			async () => [passanger],

@@ -16,6 +16,9 @@ export class Passanger {
 
 	@Prop()
 	passport: string;
+
+	@Prop()
+	needsAssistance: boolean;
 }
 
 export const PassangerSchema = SchemaFactory.createForClass(Passanger);

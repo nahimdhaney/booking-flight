@@ -9,6 +9,7 @@ export class PassangerFactoryService {
 			createPassangerDto.name,
 			createPassangerDto.lastName,
 			createPassangerDto.passport,
+			createPassangerDto.needsAssistance,
 		);
 
 		return passangerToInsert;
