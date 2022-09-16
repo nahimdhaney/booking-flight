@@ -21,7 +21,11 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://nahim:aemlpX43elqeuWDB@mongodb2:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
-      # - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb+srv://nahim:aemlpX43elqeuWDB@cluster0.0s1dd.mongodb.net/flightMicroservices?retryWrites=true&w=majority
+      - AWS_REGION=us-east-1
+      - ACCESS_KEY_ID=AKIASZCTJFEFUAFCOP76
+      - SECRET_ACCESS_KEY=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
+      - TEST_QUEUE=flights_queue
+      - TEST_QUEUE_URL=https://sqs.us-east-1.amazonaws.com/191300708619/flights_queue
 volumes:
   mongodb_data_container:
   flightbooking:

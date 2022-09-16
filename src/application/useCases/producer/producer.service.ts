@@ -9,7 +9,11 @@ export class MessageProducer {
 		const message: any = JSON.parse(JSON.stringify(body));
 		console.log('MessageProducer', message);
 		try {
-			await this.sqsService.send(config.TEST_QUEUE, message);
+			const result = await this.sqsService.send(
+				config.TEST_QUEUE,
+				message,
+			);
+			console.log(result);
 		} catch (error) {
 			console.log('error in producing image!', error);
 		}

@@ -22,22 +22,6 @@ import { ConsumerModule } from './application/useCases/consumer/consumer.module'
 		ProducerModule,
 		ConsumerModule,
 		MongoDataServicesModule,
-		// SqsModule.forRootAsync({
-		// 	// imports: [ConfigModule],
-		// 	useFactory: (configService) => {
-		// 	  const config: SqsConfigOption = {
-		// 		region: "us-east-1",
-		// 		endpoint: "https://sqs.us-east-1.amazonaws.com/191300708619/flights_queue",
-		// 		accountNumber: "191300708619",
-		// 		credentials: {
-		// 		  accessKeyId: "AKIASZCTJFEFUAFCOP76",
-		// 		  secretAccessKey: "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",
-		// 		},
-		// 	  };
-		// 	  return new SqsConfig(config);
-		// 	},
-		// 	// injects: [configService],
-		//   }),
 		EventEmitterModule.forRoot(),
 		DataServicesModule,
 		FlightServicesModule,
