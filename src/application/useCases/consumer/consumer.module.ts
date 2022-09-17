@@ -18,8 +18,9 @@ AWS.config.update({
 		SqsModule.register({
 			consumers: [
 				{
-					name: config.TEST_QUEUE, // name of the queue
-					queueUrl: config.TEST_QUEUE_URL, // the url of the queue
+					name: 'flights', //  config.TEST_QUEUE, // name of the queue
+					queueUrl:
+						'https://sqs.us-east-1.amazonaws.com/191300708619/flights', // the url of the queue
 					region: config.AWS_REGION,
 				},
 			],
