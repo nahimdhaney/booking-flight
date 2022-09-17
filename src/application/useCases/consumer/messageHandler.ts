@@ -18,7 +18,7 @@ export class MessageHandler {
 	) {
 		/* TODO document why this constructor is empty */
 	}
-	@SqsMessageHandler('flights', false)
+	@SqsMessageHandler('Flights_booking', false)
 	async handleMessage(message: AWS.SQS.Message) {
 		const obj: any = JSON.parse(message.Body);
 		const data = obj;
