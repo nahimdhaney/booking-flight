@@ -5,6 +5,7 @@ import { Passanger } from '../../../domain/passanger/model';
 import { PassangerDto, UpdatePassangerDto } from '../../dto/passanger.dto';
 import { IDataServices } from '../../abstracts/data-services.abstract';
 import { MessageProducer } from '../producer/producer.service';
+import { messageProducerSNS } from '../producer/producer.sns.service';
 
 @Injectable()
 export class PassangerServices {
@@ -12,7 +13,7 @@ export class PassangerServices {
 		private dataServices: IDataServices,
 		private passangerFactoryService: PassangerFactoryService,
 		private eventEmitter: EventEmitter2,
-		private producer: MessageProducer,
+		private producer: messageProducerSNS,
 	) {}
 
 	getAllPassangers(): Promise<Passanger[]> {
@@ -34,13 +35,16 @@ export class PassangerServices {
 		);
 
 		this.eventEmitter.emit('passanger.created', createdPassanger);
-		this.producer.sendMessage({
-			id: createdPassanger.id,
-			body: {
-				passanger: createdPassanger,
-				event: 'PasajeroCreado',
+		this.producer.sendMessage(
+			{
+				id: createdPassanger.id,
+				body: {
+					passanger: createdPassanger,
+					event: 'PasajeroCreado',
+				},
 			},
-		});
+			'arn:aws:sns:us-east-1:191300708619:PasajeroCreado',
+		);
 
 		return createdPassanger;
 	}

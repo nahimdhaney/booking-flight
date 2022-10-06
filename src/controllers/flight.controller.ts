@@ -25,6 +25,20 @@ export class FlightController {
 		return ticket;
 	}
 
+	@Get('/seats')
+	async getTickets(
+		@Query('flight') flight,
+		@Query('clase') clase,
+		@Query('status') status,
+	) {
+		const ticket = await this.flightServices.getTickets(
+			flight,
+			clase,
+			status,
+		);
+		return ticket;
+	}
+
 	@Get('/ticket')
 	async getTicketId(@Query('id') id) {
 		const ticket = await this.flightServices.getTicketById(id);

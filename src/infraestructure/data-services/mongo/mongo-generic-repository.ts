@@ -30,6 +30,8 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
 	}
 
 	update(id: string, item: T) {
-		return this._repository.findOneAndUpdate({ id: id }, item);
+		return this._repository.findOneAndUpdate({ id: id }, item, {
+			returnOriginal: false,
+		});
 	}
 }

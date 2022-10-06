@@ -46,6 +46,28 @@ export class FlightServices {
 		return airplaneticket[0];
 	}
 
+	async getTickets(
+		flight: string,
+		clase?: string,
+		status?: string,
+	): Promise<any> {
+		const querySeats = { flight: flight };
+
+		if (clase) querySeats['clase'] = clase;
+		if (status) querySeats['status'] = status;
+
+		const airplaneTickets = await this.dataServices.airPlaneTicket.query(
+			querySeats,
+		);
+
+		const flightReturned = await this.dataServices.flight.get(flight);
+		const info = {
+			flight: flightReturned,
+			airplaneTickets,
+		};
+		return info;
+	}
+
 	async createFlight(createFlightDto: FlightDto): Promise<Flight> {
 		const existInDatabase = await this.dataServices.flight.get(
 			createFlightDto.id,

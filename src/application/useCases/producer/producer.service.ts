@@ -10,7 +10,7 @@ export class MessageProducer {
 		console.log('MessageProducer', message);
 		try {
 			const result = await this.sqsService.send(
-				config.TEST_QUEUE,
+				'passengers_queue',
 				message,
 			);
 			console.log(result);

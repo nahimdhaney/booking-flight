@@ -32,7 +32,23 @@ export class BookingFactoryService {
 	}
 
 	updateBooking(updateBookingDto: UpdateBookingDto) {
-		const newBooking = new Booking();
+		const reservationNumber = new ReservationNumber(
+			updateBookingDto.reservationNumber,
+		);
+
+		const account = new AccountReceivable(
+			new Amount(updateBookingDto.value),
+		);
+
+		const newBooking = new Booking(
+			reservationNumber,
+			updateBookingDto.airPlaneTicket,
+			updateBookingDto.id,
+			updateBookingDto.passanger,
+			new ReservationStatus(updateBookingDto.reservationStatus),
+			new Date(),
+			account,
+		);
 
 		return newBooking;
 	}

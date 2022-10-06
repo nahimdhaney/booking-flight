@@ -43,12 +43,26 @@ export class BookingServices {
 		return createdBooking;
 	}
 
-	updateBooking(
-		BookingId: string,
-		updateBookingDto: UpdateBookingDto,
+	async updateBooking(
+		bookingId: string,
+		updateBookingDto: any,
 	): Promise<Booking> {
-		const booking =
-			this.bookingFactoryService.updateBooking(updateBookingDto);
-		return this.dataServices.booking.update(BookingId, booking);
+		// const booking = await this.bookingFactoryService.updateBooking(
+		// 	updateBookingDto,
+		// );
+		try {
+			const updatedBooking = await this.dataServices.booking.update(
+				bookingId,
+				updateBookingDto,
+			);
+
+			if (updatedBooking.reservationStatus == 'canceled') {
+				this.eventEmitter.emit('booking.canceled', bookingId);
+			}
+
+			return updatedBooking;
+		} catch (error) {
+			return error;
+		}
 	}
 }
