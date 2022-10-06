@@ -5,7 +5,7 @@ import {
 	BookingCommands,
 	BookingServices,
 } from '../../../application/useCases/booking';
-import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
 import { AccountReceivable } from '../../../domain/accountReceivable/model';
 import { Booking } from '../../../domain/booking/model';
 import { Payment } from '../../../domain/payment/model';
@@ -33,7 +33,7 @@ describe('BookingCommand Test', () => {
 				},
 				EventEmitter2,
 				{
-					provide: MessageProducer,
+					provide: messageProducerSNS,
 					useFactory: () => ({
 						sendMessage: jest.fn(() => true),
 					}),
