@@ -8,7 +8,8 @@ import {
 import { Payment } from '../../../domain/payment/model';
 import { TransactionNumber } from '../../../shared/ValueObjects/transactionNumber';
 import { Amount } from '../../../shared/ValueObjects/amount';
-import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
+// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PaymentUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -41,7 +42,7 @@ describe('PaymentUseCases Test', () => {
 					}),
 				},
 				{
-					provide: MessageProducer,
+					provide: messageProducerSNS,
 					useFactory: () => ({
 						sendMessage: jest.fn(() => true),
 					}),

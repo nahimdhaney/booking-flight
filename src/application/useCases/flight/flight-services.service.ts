@@ -9,7 +9,7 @@ import { FlightDto, UpdateFlightDto } from '../../dto/flight.dto';
 // import { FlightDto, UpdateFlightDto } from 'application/dto/flight.dto';
 // import { AirPlaneTicket } from 'domain/airplaneTicket/model';
 // import { Flight } from 'domain/flight/model';
-import { MessageProducer } from '../producer/producer.service';
+// import { MessageProducer } from '../producer/producer.service';
 import { FlightFactoryService } from './flight-factory.service';
 
 @Injectable()
@@ -17,8 +17,7 @@ export class FlightServices {
 	constructor(
 		private dataServices: IDataServices,
 		private flightFactoryService: FlightFactoryService,
-		private eventEmitter: EventEmitter2,
-		private producer: MessageProducer,
+		private eventEmitter: EventEmitter2, // private producer: MessageProducer,
 	) {}
 
 	getAllFlights(): Promise<Flight[]> {
@@ -44,6 +43,28 @@ export class FlightServices {
 			status: status,
 		});
 		return airplaneticket[0];
+	}
+
+	async getTickets(
+		flight: string,
+		clase?: string,
+		status?: string,
+	): Promise<any> {
+		const querySeats = { flight: flight };
+
+		if (clase) querySeats['clase'] = clase;
+		if (status) querySeats['status'] = status;
+
+		const airplaneTickets = await this.dataServices.airPlaneTicket.query(
+			querySeats,
+		);
+
+		const flightReturned = await this.dataServices.flight.get(flight);
+		const info = {
+			flight: flightReturned,
+			airplaneTickets,
+		};
+		return info;
 	}
 
 	async createFlight(createFlightDto: FlightDto): Promise<Flight> {
@@ -73,10 +94,10 @@ export class FlightServices {
 
 		this.eventEmitter.emit('flight.created', createdFlight);
 
-		this.producer.sendMessage({
-			id: flight.id,
-			body: { flight: createdFlight, event: 'VueloCreado' },
-		});
+		// this.producer.sendMessage({
+		// 	id: flight.id,
+		// 	body: { flight: createdFlight, event: 'VueloCreado' },
+		// });
 
 		return createdFlight;
 	}

@@ -12,7 +12,8 @@ import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatu
 import { AccountReceivable } from '../../../domain/accountReceivable/model';
 import { Amount } from '../../../shared/ValueObjects/amount';
 import { CreateBookingDto } from '../../../application/dto/booking.dto';
-import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
+// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('BookingsUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -43,7 +44,7 @@ describe('BookingsUseCases Test', () => {
 				EventEmitter2,
 				AirPlaneTicketCommands,
 				{
-					provide: MessageProducer,
+					provide: messageProducerSNS,
 					useFactory: () => ({
 						sendMessage: jest.fn(() => true),
 					}),

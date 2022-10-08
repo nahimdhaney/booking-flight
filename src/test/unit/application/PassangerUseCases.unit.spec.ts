@@ -7,7 +7,8 @@ import {
 	PassangerServices,
 } from '../../../application/useCases/passanger';
 import { Passanger } from '../../../domain/passanger/model';
-import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
+// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PassangerUseCases Test', () => {
 	let dataServices: IDataServices;
@@ -40,7 +41,7 @@ describe('PassangerUseCases Test', () => {
 					}),
 				},
 				{
-					provide: MessageProducer,
+					provide: messageProducerSNS,
 					useFactory: () => ({
 						sendMessage: jest.fn(() => true),
 					}),

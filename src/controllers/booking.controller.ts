@@ -25,7 +25,7 @@ export class BookingController {
 	}
 
 	@Put(':id')
-	updateBook(
+	async updateBook(
 		@Param('id') bookingId: string,
 		@Body() updateBookDto: UpdateBookingDto,
 	) {

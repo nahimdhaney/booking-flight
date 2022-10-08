@@ -16,7 +16,8 @@ import { FlightTime } from '../../../shared/ValueObjects/flightTime';
 import { RowTicketDto } from '../../../application/dto/rowTicket.dto';
 import { FlightDto } from '../../../application/dto/flight.dto';
 import { Flight } from '../../../domain/flight/model';
-import { MessageProducer } from '../../../application/useCases/producer/producer.service';
+import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
+// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 // import { Flight } from 'domain/flight/model';
 // import { FlightNumber } from 'shared/ValueObjects/flightNumber';
 // import { FlightTime } from 'shared/ValueObjects/flightTime';
@@ -29,7 +30,7 @@ describe('FlightsUseCases Test', () => {
 	let flightFactoryService: FlightFactoryService;
 	let eventEmitter: EventEmitter2;
 	let flightServices: FlightServices;
-	let messageProducer: MessageProducer;
+	let messageProducer: messageProducerSNS;
 
 	beforeEach(async () => {
 		const module = await Test.createTestingModule({
@@ -54,12 +55,12 @@ describe('FlightsUseCases Test', () => {
 						emit: jest.fn(() => true),
 					}),
 				},
-				{
-					provide: MessageProducer,
-					useFactory: () => ({
-						sendMessage: jest.fn(() => true),
-					}),
-				},
+				// {
+				// 	provide: messageProducerSNS,
+				// 	useFactory: () => ({
+				// 		sendMessage: jest.fn(() => true),
+				// 	}),
+				// },
 				FlightFactoryService,
 			],
 		}).compile();

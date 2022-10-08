@@ -4,14 +4,14 @@ import { Payment } from '../../../domain/payment/model';
 import { Amount } from '../../../shared/ValueObjects/amount';
 import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatus';
 import { IDataServices } from '../../abstracts/data-services.abstract';
-import { MessageProducer } from '../producer/producer.service';
+import { messageProducerSNS } from '../producer/producer.sns.service';
 
 @Injectable()
 export class BookingCommands {
 	constructor(
 		private dataServices: IDataServices,
 		private eventEmitter: EventEmitter2,
-		private producer: MessageProducer,
+		private producer: messageProducerSNS,
 	) {}
 
 	@OnEvent('payment.created')
@@ -31,18 +31,32 @@ export class BookingCommands {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'completed',
 			);
-			this.producer.sendMessage({
-				id: payload.id,
-				body: { payment: payload, event: 'ReservaPagada' },
-			});
+			// this.producer.sendMessage({
+			// 	id: payload.id,
+			// 	body: { payment: payload, event: 'ReservaPagada' },
+			// });
+			this.producer.sendMessage(
+				{
+					id: payload.id,
+					body: { payment: payload, event: 'ReservaPagada' },
+				},
+				'arn:aws:sns:us-east-1:191300708619:ReservaPagada',
+			);
 		} else {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'parcially-payed',
 			);
-			this.producer.sendMessage({
-				id: payload.id,
-				body: { payment: payload, event: 'ReservaPago' },
-			});
+			// this.producer.sendMessage({
+			// 	id: payload.id,
+			// 	body: { payment: payload, event: 'ReservaPago' },
+			// });
+			this.producer.sendMessage(
+				{
+					id: payload.id,
+					body: { payment: payload, event: 'ReservaPago' },
+				},
+				'arn:aws:sns:us-east-1:191300708619:ReservaPago',
+			);
 		}
 
 		bookingToUpdate.accountReceivable.currentValue = new Amount(

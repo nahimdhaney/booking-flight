@@ -6,7 +6,7 @@ import { BookingFactoryService } from './booking-factory.service';
 import { BookingServices } from './booking-services.service';
 
 @Module({
-	imports: [DataServicesModule, ProducerModule, ProducerModule],
+	imports: [DataServicesModule, ProducerModule],
 	providers: [BookingFactoryService, BookingServices, BookingCommands],
 	exports: [BookingFactoryService, BookingServices, BookingCommands],
 })
