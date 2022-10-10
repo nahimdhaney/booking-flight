@@ -34,14 +34,6 @@ export class BookingServices {
 
 		this.eventEmitter.emit('booking.created', createdBooking);
 
-		// this.producer.sendMessage(
-		// 	{
-		// 		id: createdBooking.id,
-		// 		body: { booking: createdBooking, event: 'ReservaCreada' },
-		// 	},
-		// 	'arn:aws:sns:us-east-1:191300708619:ReservaCreada',
-		// );
-
 		return createdBooking;
 	}
 
@@ -49,9 +41,6 @@ export class BookingServices {
 		bookingId: string,
 		updateBookingDto: any,
 	): Promise<Booking> {
-		// const booking = await this.bookingFactoryService.updateBooking(
-		// 	updateBookingDto,
-		// );
 		try {
 			const updatedBooking = await this.dataServices.booking.update(
 				bookingId,

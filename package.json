@@ -96,6 +96,10 @@
       "main.ts",
       "app.module.ts",
       "application/abstracts/index.ts",
+      "application/useCases/producer/producer.sns.service.ts",
+      "application/useCases/producer/producer.module.ts",
+      "application/useCases/consumer/messageHandler.ts",
+      "application/useCases/consumer/consumer.module.ts",
       "infraestructure/data-services/mongo/mongo-data-services.service.ts",
       "infraestructure/data-services/mongo/mongo-generic-repository.ts"
   ],

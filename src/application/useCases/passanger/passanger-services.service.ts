@@ -5,6 +5,7 @@ import { Passanger } from '../../../domain/passanger/model';
 import { PassangerDto, UpdatePassangerDto } from '../../dto/passanger.dto';
 import { IDataServices } from '../../abstracts/data-services.abstract';
 import { messageProducerSNS } from '../producer/producer.sns.service';
+import { config } from '../../../configuration';
 
 @Injectable()
 export class PassangerServices {
@@ -42,7 +43,7 @@ export class PassangerServices {
 					event: 'PasajeroCreado',
 				},
 			},
-			'arn:aws:sns:us-east-1:191300708619:PasajeroCreado',
+			`${config.SNS_ARN}:PasajeroCreado`,
 		);
 
 		return createdPassanger;
