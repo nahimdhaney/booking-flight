@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { config } from '../../../configuration';
 import { Payment } from '../../../domain/payment/model';
 import { Amount } from '../../../shared/ValueObjects/amount';
 import { ReservationStatus } from '../../../shared/ValueObjects/reservationStatus';
@@ -31,31 +32,23 @@ export class BookingCommands {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'completed',
 			);
-			// this.producer.sendMessage({
-			// 	id: payload.id,
-			// 	body: { payment: payload, event: 'ReservaPagada' },
-			// });
 			this.producer.sendMessage(
 				{
 					id: payload.id,
 					body: { payment: payload, event: 'ReservaPagada' },
 				},
-				'arn:aws:sns:us-east-1:191300708619:ReservaPagada',
+				`${config.SNS_ARN}:ReservaPagada`,
 			);
 		} else {
 			bookingToUpdate.reservationStatus = new ReservationStatus(
 				'parcially-payed',
 			);
-			// this.producer.sendMessage({
-			// 	id: payload.id,
-			// 	body: { payment: payload, event: 'ReservaPago' },
-			// });
 			this.producer.sendMessage(
 				{
 					id: payload.id,
 					body: { payment: payload, event: 'ReservaPago' },
 				},
-				'arn:aws:sns:us-east-1:191300708619:ReservaPago',
+				`${config.SNS_ARN}:ReservaPago`,
 			);
 		}
 

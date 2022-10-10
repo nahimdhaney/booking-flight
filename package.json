@@ -86,13 +86,23 @@
       "ts"
     ],
     "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coveragePathIgnorePatterns": [
+      "main.ts",
+      "app.module.ts",
+      "application/abstracts/index.ts",
+      "application/useCases/producer/producer.sns.service.ts",
+      "application/useCases/producer/producer.module.ts",
+      "application/useCases/consumer/messageHandler.ts",
+      "application/useCases/consumer/consumer.module.ts",
+      "infraestructure/data-services/mongo/mongo-data-services.service.ts",
+      "infraestructure/data-services/mongo/mongo-generic-repository.ts"
+  ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {

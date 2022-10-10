@@ -21,6 +21,7 @@ export class PaymentFactoryService {
 			transactionNumber,
 			createpaymentDto.booking,
 			amount,
+			createpaymentDto.date,
 		);
 
 		return passangerToInsert;

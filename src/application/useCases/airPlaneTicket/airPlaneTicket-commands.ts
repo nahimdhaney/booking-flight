@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { IDataServices } from '../../abstracts/data-services.abstract';
 import { Booking } from '../../../domain/booking/model';
 import { messageProducerSNS } from '../producer/producer.sns.service';
+import { config } from '../../../configuration';
 
 @Injectable()
 export class AirPlaneTicketCommands {
@@ -34,7 +35,7 @@ export class AirPlaneTicketCommands {
 					event: 'ReservaCreada',
 				},
 			},
-			'arn:aws:sns:us-east-1:191300708619:ReservaCreada',
+			`${config.SNS_ARN}:ReservaCreada`,
 		);
 
 		await this.dataServices.airPlaneTicket.update(
@@ -59,7 +60,7 @@ export class AirPlaneTicketCommands {
 					event: 'ReservaCancelada',
 				},
 			},
-			'arn:aws:sns:us-east-1:191300708619:ReservaCancelada',
+			`${config.SNS_ARN}:ReservaCancelada`,
 		);
 	}
 }

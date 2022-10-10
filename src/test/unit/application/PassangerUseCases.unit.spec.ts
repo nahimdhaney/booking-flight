@@ -8,7 +8,6 @@ import {
 } from '../../../application/useCases/passanger';
 import { Passanger } from '../../../domain/passanger/model';
 import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
-// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('PassangerUseCases Test', () => {
 	let dataServices: IDataServices;

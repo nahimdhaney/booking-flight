@@ -6,6 +6,7 @@ export class PaymentDto {
 	transactionNumber: number;
 	amount: number;
 	booking: uuid;
+	date: Date;
 }
 
 export class UpdatePaymentDto extends PartialType(PaymentDto) {}
