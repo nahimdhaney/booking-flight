@@ -4,7 +4,6 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Passanger } from '../../../domain/passanger/model';
 import { PassangerDto, UpdatePassangerDto } from '../../dto/passanger.dto';
 import { IDataServices } from '../../abstracts/data-services.abstract';
-import { MessageProducer } from '../producer/producer.service';
 import { messageProducerSNS } from '../producer/producer.sns.service';
 
 @Injectable()

@@ -1,10 +1,5 @@
 import { Test } from '@nestjs/testing';
 
-// import {
-// 	FlightFactoryService,
-// 	FlightServices,
-// } from 'application/useCases/flight';
-// import { IDataServices } from 'application/abstracts/data-services.abstract';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { IDataServices } from '../../../application/abstracts/data-services.abstract';
 import {
@@ -17,13 +12,6 @@ import { RowTicketDto } from '../../../application/dto/rowTicket.dto';
 import { FlightDto } from '../../../application/dto/flight.dto';
 import { Flight } from '../../../domain/flight/model';
 import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
-// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
-// import { Flight } from 'domain/flight/model';
-// import { FlightNumber } from 'shared/ValueObjects/flightNumber';
-// import { FlightTime } from 'shared/ValueObjects/flightTime';
-// import { FlightDto } from 'application/dto/flight.dto';
-// import { AirPlaneTicket } from 'domain/airplaneTicket/model';
-// import { RowTicketDto } from 'application/dto/rowTicket.dto';
 
 describe('FlightsUseCases Test', () => {
 	let dataServices: IDataServices;

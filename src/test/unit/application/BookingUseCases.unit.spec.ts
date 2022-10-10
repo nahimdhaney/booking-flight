@@ -13,7 +13,6 @@ import { AccountReceivable } from '../../../domain/accountReceivable/model';
 import { Amount } from '../../../shared/ValueObjects/amount';
 import { CreateBookingDto } from '../../../application/dto/booking.dto';
 import { messageProducerSNS } from '../../../application/useCases/producer/producer.sns.service';
-// import { MessageProducer } from '../../../application/useCases/producer/producer.service';
 
 describe('BookingsUseCases Test', () => {
 	let dataServices: IDataServices;

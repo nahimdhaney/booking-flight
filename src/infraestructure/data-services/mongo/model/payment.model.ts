@@ -6,7 +6,6 @@ import { TransactionNumber } from '../../../../shared/ValueObjects/transactionNu
 // import { Seat } from 'shared/ValueObjects/seat';
 // import { TransactionNumber } from 'shared/ValueObjects/transactionNumber';
 // import { Amount } from 'shared/ValueObjects/amount';
-import { Booking } from './booking.model';
 
 export type PaymentDocument = Payment & Document;
 
@@ -23,6 +22,9 @@ export class Payment {
 
 	@Prop()
 	booking: uuid;
+
+	@Prop()
+	date: Date;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);
