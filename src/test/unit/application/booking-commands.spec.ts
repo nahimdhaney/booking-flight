@@ -29,6 +29,9 @@ describe('BookingCommand Test', () => {
 							get: jest.fn(() => true),
 							update: jest.fn(() => true),
 						},
+						passanger: {
+							get: jest.fn(() => true),
+						},
 					}),
 				},
 				EventEmitter2,
