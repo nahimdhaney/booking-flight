@@ -26,6 +26,10 @@ export class BookingCommands {
 
 		const resultingAmount = bookingTicketPrice - amountPayed;
 
+		const passanger = await this.dataServices.passanger.get(
+			bookingToUpdate.passanger,
+		);
+
 		if (resultingAmount == 0) {
 			this.eventEmitter.emit('payment.completed', payload.booking);
 
@@ -35,7 +39,12 @@ export class BookingCommands {
 			this.producer.sendMessage(
 				{
 					id: payload.id,
-					body: { payment: payload, event: 'ReservaPagada' },
+					body: {
+						payment: payload,
+						booking: bookingToUpdate,
+						passanger: passanger,
+						event: 'ReservaPagada',
+					},
 				},
 				`${config.SNS_ARN}:ReservaPagada`,
 			);
@@ -46,7 +55,12 @@ export class BookingCommands {
 			this.producer.sendMessage(
 				{
 					id: payload.id,
-					body: { payment: payload, event: 'ReservaPago' },
+					body: {
+						payment: payload,
+						booking: bookingToUpdate,
+						passanger: passanger,
+						event: 'ReservaPago',
+					},
 				},
 				`${config.SNS_ARN}:ReservaPago`,
 			);
