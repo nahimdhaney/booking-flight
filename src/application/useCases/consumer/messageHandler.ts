@@ -43,7 +43,7 @@ export class MessageHandler {
 				};
 			}
 			const flight: any = {
-				id: wrapper.data.flight_program.uuid,
+				id: wrapper.data.flight.uuid,
 				destinyId: wrapper.data.flight_program.destinyAirport,
 				originId: wrapper.data.flight_program.sourceAirport,
 				flightNumber: wrapper.data.flight_program.flightCode + '',
