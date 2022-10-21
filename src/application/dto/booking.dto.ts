@@ -10,7 +10,7 @@ export class CreateBookingDto {
 	reservationNumber: string;
 
 	@IsString()
-	@IsNotEmpty()
+	// @IsNotEmpty()
 	airPlaneTicket: uuid;
 
 	flight: uuid;

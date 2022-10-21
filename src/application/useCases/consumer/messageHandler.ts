@@ -20,24 +20,23 @@ export class MessageHandler {
 	}
 	@SqsMessageHandler('nahim_booking', false)
 	async handleMessage(message: AWS.SQS.Message) {
-		const obj: any = JSON.parse(message.Body);
-		const data = obj;
+		const obj: any = JSON.parse(JSON.parse(message.Body).Message);
+		const wrapper = obj;
 
-		if (data.event && data.event === 'FlightCreated') {
+		if (wrapper.event && wrapper.event === 'FlightCreated') {
 			const flight: any = {
-				destinyId: data.flight.source_airport_code,
-				originId: data.flight.destiny_airport_code,
-				flightNumber: data.flight.id + '',
-				departureTime: data.flight.startTime,
-				arrivalTime: data.flight.endTime,
-				flightTime: data.flight.startTime,
-				tickets: data.information.tickets,
+				destinyId: wrapper.data.flight_program.destinyAirport,
+				originId: wrapper.data.flight_program.sourceAirport,
+				flightNumber: wrapper.data.flight_program.flightCode + '',
+				departureTime: new Date(wrapper.data.flight.scheduledStartTime),
+				arrivalTime: new Date(wrapper.data.flight.scheduledEndTime),
+				flightTime: new Date(wrapper.data.flight.scheduledStartTime),
 			};
 
 			this.flightServices.createFlight(flight);
 		}
 
-		console.log(data);
+		console.log(wrapper);
 		// use the data and consume it the way you want //
 	}
 }
