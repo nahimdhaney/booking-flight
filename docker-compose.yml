@@ -24,8 +24,9 @@ services:
       - AWS_REGION=us-east-1
       - ACCESS_KEY_ID=AKIASZCTJFEFUAFCOP76
       - SECRET_ACCESS_KEY=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
-      - TEST_QUEUE=flights_queue
-      - TEST_QUEUE_URL=https://sqs.us-east-1.amazonaws.com/191300708619/flights_queue
+      - SNS_ARN=arn:aws:sns:us-east-1:191300708619
+      - TEST_QUEUE=nahim_booking
+      - TEST_QUEUE_URL=https://sqs.us-east-1.amazonaws.com/191300708619/nahim_booking
 volumes:
   mongodb_data_container:
   flightbooking:
