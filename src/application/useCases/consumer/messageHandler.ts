@@ -24,13 +24,29 @@ export class MessageHandler {
 		const wrapper = obj;
 
 		if (wrapper.event && wrapper.event === 'FlightCreated') {
+			let otherFields;
+			if (wrapper.data.flight.scheduledStartTime) {
+				otherFields = {
+					departureTime: new Date(
+						wrapper.data.flight.scheduledStartTime,
+					),
+					arrivalTime: new Date(wrapper.data.flight.scheduledEndTime),
+					flightTime: new Date(
+						wrapper.data.flight.scheduledStartTime,
+					),
+				};
+			} else {
+				otherFields = {
+					departureTime: new Date(wrapper.data.flight.startTime),
+					arrivalTime: new Date(wrapper.data.flight.endTime),
+					flightTime: new Date(wrapper.data.flight.startTime),
+				};
+			}
 			const flight: any = {
 				destinyId: wrapper.data.flight_program.destinyAirport,
 				originId: wrapper.data.flight_program.sourceAirport,
 				flightNumber: wrapper.data.flight_program.flightCode + '',
-				departureTime: new Date(wrapper.data.flight.scheduledStartTime),
-				arrivalTime: new Date(wrapper.data.flight.scheduledEndTime),
-				flightTime: new Date(wrapper.data.flight.scheduledStartTime),
+				...otherFields,
 			};
 
 			this.flightServices.createFlight(flight);
